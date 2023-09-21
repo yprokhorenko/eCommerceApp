@@ -1,0 +1,27 @@
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+/* footer fixed to the bottom  */
+ html,
+ body,
+ #root {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.wrapper-content {
+  flex-grow: 1 ;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
