@@ -1,7 +1,8 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
-import { setIsCartOpen } from "../redux/cartSlice";
+import { setIsCartOpen, removeItem, resetCart } from "../redux/cartSlice";
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from "react-router-dom";
 
 const Wrapper = styled.section`
   
@@ -99,7 +100,8 @@ const Wrapper = styled.section`
 
   .cart_container {
     // margin: 10px 15px;
-    cursor: pointer;
+    max-height: 310px;
+    overflow: auto;
   }
 
   .cart_main {
@@ -133,8 +135,12 @@ const Wrapper = styled.section`
 
     &:hover {
       color: rgba(253, 0, 0, 1);
+      cursor: pointer;
     }
+
+
   }
+  
 `;
 
 const Cart = () => {
@@ -143,19 +149,35 @@ const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
 
+ 
+
+  const totalPrice = () => {
+    let total = 0;
+    products.forEach((item) => {total += item.quantity * item.price
+  })
+      return total.toFixed(2)
+  };
+
   const handleCloseCart = () => {
     dispatch(setIsCartOpen());
   };
+
+  const handleOverlayClick = (e) => {
+    if (!e.target.closest(".cart")) {
+      handleCloseCart();
+    }
+  };
+
   return (
     <Wrapper >
       {isCartOpen && (
-        <div className="cart-overlay" onClick={handleCloseCart}>
+        <div className="cart-overlay" onClick={handleOverlayClick}>
         <div className="cart">
           <h3 className="cart_title">Products in your cart:</h3>
           <div className="cart_container">
-            {products.map((item) => (
+            {products?.map((item) => (
               <div className="cart_item" key={item.id}>
-                <div className="cart_main">
+                <Link  Link to={`/product/${item.id}`} className="cart_main" onClick = {handleCloseCart}>
                   <div className="cart_img">
                     <img src={item.img} alt="" className="cartImg_link" />
                   </div>
@@ -164,19 +186,22 @@ const Cart = () => {
                     <p className="cart_desc">{item.desc?.substring(0, 50)}</p>
                     <p className="cart_price"> {item.quantity} x ${item.price}</p>
                   </div>
-                </div>
-                <div className="cart_btns">
-                  <AiOutlineDelete className="cart_btns_delete" />
+                </Link>
+                <div className="cart_btns" onClick={()=> {
+                  
+                  dispatch(removeItem(item.id))
+                 } } >
+                  <AiOutlineDelete className="cart_btns_delete"  />
                 </div>
               </div>
             ))}
           </div>
           <div className="cart_total">
             <h3 className="subtotal">Subtotal:</h3>
-            <h3 className="subtotal_figure">$</h3>
+            <h3 className="subtotal_figure">$ {totalPrice()}</h3>
           </div>
           <button className="cart_checkout">proceed to checkout</button>
-          <button className="cart_reset">Reset Cart</button>
+          <button className="cart_reset" onClick={()=> dispatch(resetCart())}>Reset Cart</button>
         </div> 
       </div> 
 )}    

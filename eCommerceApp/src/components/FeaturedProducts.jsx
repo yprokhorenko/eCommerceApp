@@ -31,29 +31,29 @@ const Wrapper = styled.section`
   }
 `;
 
-const FeaturedProducts = ({ type }) => {
-
-  const { data, loading, error } = useFetch (
+const FeaturedProducts = ({ type, desc }) => {
+  const { data, loading, error } = useFetch(
     `products?populate=*&[filters][type][$eq]=${type}`
   );
+
+  const limitedItems = data ? data.slice(0, 4) : [];
+  
   return (
     <Wrapper>
       <div className="featuredProducts">
         <div className="top">
-          <h2 className="top-title"> {type} Products</h2>
-          <p className="top-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Consequuntur accusamus sint nihil commodi odio excepturi delectus
-            veniam ullam voluptatem saepe, minima quia illo, necessitatibus
-            itaque neque aliquam corrupti explicabo et.
-          </p>
+          <h2 className="top-title">
+            {" "}
+            {type.charAt(0).toUpperCase() + type.slice(1)} Products
+          </h2>
+          <p className="top-desc">{desc}</p>
         </div>
         <div className="bottom">
           {error
             ? "Something went wrong!"
             : loading
             ? "Loading"
-            : data.map((item) => <Card item={item} key={item.id} />)}
+            : limitedItems.map((item) => <Card item={item} key={item.id} />)}
         </div>
       </div>
     </Wrapper>

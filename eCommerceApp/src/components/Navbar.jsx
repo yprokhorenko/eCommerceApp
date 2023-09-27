@@ -137,6 +137,7 @@ const Wrapper = styled.div`
 export default function Navbar() {
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const dispatch = useDispatch();
+  const products = useSelector((state) => state.cart.products);
   return (
     <Wrapper>
       <div className="navbar">
@@ -197,7 +198,7 @@ export default function Navbar() {
               onClick={() => dispatch(setIsCartOpen({}))}
               className="cart-icon icon"
             >
-              <MdOutlineShoppingCart /> <span>0</span>
+              <MdOutlineShoppingCart /> <span>{products.length}</span>
             </NavLink>
             {/* {cartOpen && (
               <div className="modal-wrapper">

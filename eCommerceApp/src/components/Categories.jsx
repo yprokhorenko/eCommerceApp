@@ -42,12 +42,17 @@ const Wrapper = styled.section`
         background-color: white;
         text-transform: uppercase;
         font-weight: 500;
+        
       }
 
       img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+      }
+      button:hover {
+        background-color: #1485FE;
+        color: white;
       }
     }
   }

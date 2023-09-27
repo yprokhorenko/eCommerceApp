@@ -43,6 +43,7 @@ console.log(data)
           <img src={images[selectedImg]} alt="" />
         </div>
       </div>
+      
       <div className="right">
         <h1>{data?.attributes?.title}</h1>
         <span className="price">${data?.attributes?.price}</span>
@@ -57,13 +58,12 @@ console.log(data)
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div> 
         <button className="add" onClick={()=> dispatch(addToCart({
-          id: data.id,
-          title: data.attributes.title, 
-          desc: data.attributes.desc, 
-          price: data.attributes.price, 
-
-          img: "http://localhost:1337" + data?.attributes?.img?.data?.attributes?.url, 
-          quantity 
+         id: data.id,
+         title: data.attributes.title, 
+         desc: data.attributes.desc, 
+         price: data.attributes.price, 
+         img: "http://localhost:1337" + data?.attributes?.img?.data?.attributes?.url, 
+         quantity 
         }) )}>
           <MdOutlineShoppingCart /> ADD TO CART
         </button>
