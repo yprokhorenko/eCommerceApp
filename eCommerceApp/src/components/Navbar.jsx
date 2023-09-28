@@ -198,8 +198,7 @@ export default function Navbar() {
               onClick={() => dispatch(setIsCartOpen({}))}
               className="cart-icon icon"
             >
-              <MdOutlineShoppingCart /> <span>{products.length}</span>
-            </NavLink>
+              <MdOutlineShoppingCart /> {products.length > 0 && <span>{products.length}</span>} </NavLink>
             {/* {cartOpen && (
               <div className="modal-wrapper">
                 <Cart />
