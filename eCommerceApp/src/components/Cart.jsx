@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { setIsCartOpen, removeItem, resetCart } from "../redux/cartSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import {useState} from "react";
+import { increaseQuantity, decreaseQuantity } from "../redux/cartSlice";
 
 const Wrapper = styled.section`
   
@@ -22,6 +24,22 @@ const Wrapper = styled.section`
       text-align: center;
     }
   }
+
+  .quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            button {
+                width: 50px;
+                height: 50px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border: none;
+            }
+        }
 
   .cart-overlay {
     position: fixed;
@@ -149,8 +167,6 @@ const Cart = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
 
- 
-
   const totalPrice = () => {
     let total = 0;
     products.forEach((item) => {total += item.quantity * item.price
@@ -187,6 +203,13 @@ const Cart = () => {
                     <p className="cart_price"> {item.quantity} x ${item.price}</p>
                   </div>
                 </Link>
+                <div className="">
+                  <div className="quantity">
+                      <button onClick={() => dispatch(decreaseQuantity({ id: item.id }))}> - </button>
+                      {item.quantity} 
+                      <button onClick={() => dispatch(increaseQuantity({ id: item.id }))} > + </button>
+                  </div>
+                </div>
                 <div className="cart_btns" onClick={()=> {
                   
                   dispatch(removeItem(item.id))

@@ -21,7 +21,8 @@ export default function Product() {
     "http://localhost:1337" + data?.attributes?.img2?.data?.attributes?.url,
   ];
   const dispatch = useDispatch();
-console.log(data)
+
+     // console.log(data)
   return (
     <div className="product">
       <div className="left">

@@ -38,7 +38,7 @@ export default function Products()  {
         ? [...selectedSubCats, value]
         : selectedSubCats.filter((item) => item !== value)
     );
-    console.log(selectedSubCats)
+    // console.log(selectedSubCats)
   };
 
   return (
