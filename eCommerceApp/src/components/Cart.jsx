@@ -13,12 +13,17 @@ const Wrapper = styled.section`
     width: 400px;
     min-height: 200px;
     position: absolute;
+    border-radius: 6px;
     z-index: 44;
     top: 1px;
     right: 10px;
+    color: black;
     // border-radius: 4px;
     padding: 20px 10px;
     background-color: #f2f2f2;
+        top: 70px;
+
+  
 
     .cart_title {
       text-align: center;
@@ -42,17 +47,18 @@ const Wrapper = styled.section`
         }
 
   .cart-overlay {
+  
     position: fixed;
-    top: 50px;
+    top: 0px;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5); 
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100;
-    backdrop-filter: blur(4px); 
+    /* backdrop-filter: blur(4px);  */
   }
 
 
@@ -176,6 +182,7 @@ const Cart = () => {
 
   const handleCloseCart = () => {
     dispatch(setIsCartOpen());
+    
   };
 
   const handleOverlayClick = (e) => {

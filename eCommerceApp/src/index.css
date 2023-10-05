@@ -40,4 +40,6 @@ button {
   box-sizing: border-box;
 }
 
-  
+.main {
+  margin: 40px 0;
+}

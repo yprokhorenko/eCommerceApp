@@ -19,6 +19,7 @@ import {
   REGISTER,
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
+import navbarSlice from "./navbarSlice";
 
 
 const persistConfig = {
@@ -32,6 +33,7 @@ const persistedReducer = persistReducer(persistConfig, cartSlice)
 export const store = configureStore({
   reducer: {
     cart: persistedReducer,
+    navbar: navbarSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
