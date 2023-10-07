@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-// import { setIsCatalogOpen } from "../redux/navbarSlice";
-// import { useDispatch, useSelector } from "react-redux";
 
 const Wrapper = styled.div`
 .catalog {
@@ -9,13 +7,15 @@ const Wrapper = styled.div`
     top: 70px;
     left: 230px;
     width: 1000px;
-    background-color: #dadada;
+    background-color: white;
+    color: black;
     border-radius: 4px;
     height: 300px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     padding: 10px;
+    z-index: 22;
   }
 
   .catalog li {
@@ -38,33 +38,36 @@ const Wrapper = styled.div`
   }
     
   
-.overlay {
+
+`;
+const Overlay = styled.div`
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5); 
   z-index: 9; 
-  }
+  display: ${(props) => (props.isOpen ? "block" : "none")};
 `;
 
 
 
-const CatalogHeader = ({ catalog }) => {
-  console.log("catalog", catalog);
-//  const dispatch = useDispatch();
-//  const isCatalogOpen = useSelector((state)=> state.navbar.isCatalogOpen)
+const CatalogHeader = ({ catalog, isCatalogOpen, setIsCatalogOpen }) => {
+  
   return (
     <Wrapper>
-      {/* <div className={`${
-          isCatalogOpen ? "overlay show-sidebar" : "overlay"
-        }`}></div> */}
-      <div className=" catalog" onClick ={() => {}}>
+      <Overlay isOpen={isCatalogOpen}  />
+      <div className={`${
+          isCatalogOpen ? "overlay catalog" : "overlay"
+        }`}></div>
+      <div className="catalog">
         {catalog.map((item) => {
           const { id, name, link } = item;
           return (
-            <li className="" key={id}>
+            <li key={id} onClick={(e) => {
+              setIsCatalogOpen(!isCatalogOpen);
+            }}>
               <NavLink to={link}>{name}</NavLink>
             </li>
           );

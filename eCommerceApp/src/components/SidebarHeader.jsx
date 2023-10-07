@@ -4,19 +4,19 @@ import { useDispatch,useSelector  } from "react-redux";
 
 const Wrapper = styled.div`
   .sidebar-overlay {
-    position: fixed;
-  height: 100%;
-  width: 350px;
-  z-index: 11;
-  top: 0;
-  left: 0;
-  transition:  0.8s all cubic-bezier(0.075, 0.82, 0.165, 1);
-  transform: translate(-100%);
-  box-shadow: rgba(0, 0, 0, 0.1);
-  backface-visibility: hidden;
-  color: rgb(68, 68, 68);
-  padding: 20px;
-  background-color: #fff;
+      position: fixed;
+      height: 100%;
+      width: 350px;
+      z-index: 11;
+      top: 0;
+      left: 0;
+      transition:  0.8s all cubic-bezier(0.075, 0.82, 0.165, 1);
+      transform: translate(-100%);
+      box-shadow: rgba(0, 0, 0, 0.1);
+      backface-visibility: hidden;
+      color: rgb(68, 68, 68);
+      padding: 20px;
+      background-color: #fff;
 
     .sidebar-header {
       display: flex;

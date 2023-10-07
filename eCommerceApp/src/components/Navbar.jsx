@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import headerLang from "../assets/header-lang.png";
+import React, { useState,useRef, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,7 +14,6 @@ import Cart from "./Cart";
 import styled from "styled-components";
 import { setIsCartOpen } from "../redux/cartSlice";
 import SidebarHeader from "./SidebarHeader";
-import { setIsCatalogOpen } from "../redux/navbarSlice";
 import CatalogHeader from "./CatalogHeader";
 import SearchBar from "./navbar/SearchBar";
 import SearchResultsList from "./navbar/SearchResultsList";
@@ -42,7 +40,7 @@ const Wrapper = styled.div`
     display: flex;
     align-items: center;
     color: white;
-    position: absolute;
+    position: fixed;
     z-index: 2;
   }
 
@@ -83,7 +81,8 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #00A046;
-    font-size: 13px;
+    font-size: 14px;
+    
   }
 
   @media screen and (max-width: 1260px) {
@@ -160,27 +159,36 @@ const Wrapper = styled.div`
   display: flex;
 }
 
+
+
 `;
 
 export default function Navbar() {
-  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.cart.products);
-  const isCatalogOpen = useSelector((state)=> state.navbar.isCatalogOpen);
 
-  const [isOpen, setIsOpen] = useState(false);
+  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+
+  const products = useSelector((state) => state.cart.products);
+
   const [results, setResults] = useState([]);
   const [input, setInput] = useState("");
   const [showList,setShowList] = useState();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleCatalogOverlayClick = () => {
-    dispatch(setIsCatalogOpen(!isCatalogOpen));
+
+  const onNavbarClickHandler = (event) => {
+
+          if (isCatalogOpen) {
+            if (!event.target.classList.contains("catalog-btn")) {
+              setIsCatalogOpen(false);
+            }
+          }
   };
 
 return (
     <Wrapper>
-      <div className="navbar">
+      <div className="navbar"  onClick={onNavbarClickHandler} >
         <div className="navbar_container">
                                                                  {/*     S I D E    M E N U     */}
 
@@ -197,12 +205,12 @@ return (
               <img className="logo-img" src={facebook} alt="Logo" />
             </NavLink>
 
-                                                                 {/*     C    A    T    A     L     O      G     */}
+                                         {/*  --------------------------   C    A    T    A     L     O      G   --------------------------   */}
             <div className="catalog"> 
-                <button className="catalog-btn" onClick={handleCatalogOverlayClick}>
+                <button className="catalog-btn" onClick={(e)=>{setIsCatalogOpen(!isCatalogOpen), e.stopPropagation();}}>
                   <TbCategory2 style={{ fontSize: "25px" }} /> <p style={{ fontSize: "16px" }}>Catalog</p>
                 </button>
-                {isCatalogOpen && <CatalogHeader catalog={navRight} />}
+                {isCatalogOpen && <CatalogHeader catalog={navRight} setIsCatalogOpen={setIsCatalogOpen} isCatalogOpen={isCatalogOpen} />}
             </div>
                                                                 {/*     S E A R C H    B A R     */}
             
@@ -222,13 +230,13 @@ return (
                 <NavLink to="/favorite" className="favorite-icon icon">
                   <MdOutlineFavoriteBorder />
                 </NavLink>
-                <NavLink onClick={() => dispatch(setIsCartOpen({}))} className="cart-icon icon">
-                    <MdOutlineShoppingCart />
-                    {products.length > 0 && <span>{products.length}</span>}
+                <NavLink onClick={() => dispatch(setIsCartOpen(!isCartOpen))} className="cart-icon icon">
+                    <MdOutlineShoppingCart  />
+                    {products.length > 0 && <span >{products.length}</span>}
                 </NavLink>
             </>
             
-            {isCartOpen && <Cart />}
+            {isCartOpen && <Cart  isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
         
 
 

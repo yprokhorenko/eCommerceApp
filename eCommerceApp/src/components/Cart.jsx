@@ -1,27 +1,28 @@
 import { AiOutlineDelete } from "react-icons/ai";
 import styled from "styled-components";
-import { setIsCartOpen, removeItem, resetCart } from "../redux/cartSlice";
+import {  removeItem, resetCart } from "../redux/cartSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import {useState} from "react";
 import { increaseQuantity, decreaseQuantity } from "../redux/cartSlice";
 
 const Wrapper = styled.section`
-  
+      position: absolute;
   .cart {
     visibility: none;
-    width: 400px;
+    width: 500px;
     min-height: 200px;
+    
     position: absolute;
     border-radius: 6px;
     z-index: 44;
     top: 1px;
-    right: 10px;
+    right: 15%;
     color: black;
     // border-radius: 4px;
     padding: 20px 10px;
     background-color: #f2f2f2;
-        top: 70px;
+        top: 0px;
 
   
 
@@ -49,6 +50,7 @@ const Wrapper = styled.section`
   .cart-overlay {
   
     position: fixed;
+    margin-top: 70px;
     top: 0px;
     left: 0;
     width: 100%;
@@ -162,14 +164,14 @@ const Wrapper = styled.section`
       cursor: pointer;
     }
 
+    
 
   }
   
 `;
 
-const Cart = () => {
+const Cart = ({isCartOpen,setIsCartOpen}) => {
 
-  const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
 
@@ -181,18 +183,19 @@ const Cart = () => {
   };
 
   const handleCloseCart = () => {
-    dispatch(setIsCartOpen());
+    dispatch(setIsCartOpen(!isCartOpen));
     
   };
 
   const handleOverlayClick = (e) => {
     if (!e.target.closest(".cart")) {
       handleCloseCart();
+      // e.stopPropagation()
     }
   };
 
   return (
-    <Wrapper >
+    <Wrapper  >
       {isCartOpen && (
         <div className="cart-overlay" onClick={handleOverlayClick}>
         <div className="cart">
@@ -231,7 +234,7 @@ const Cart = () => {
             <h3 className="subtotal_figure">$ {totalPrice()}</h3>
           </div>
           <button className="cart_checkout">proceed to checkout</button>
-          <button className="cart_reset" onClick={()=> dispatch(resetCart())}>Reset Cart</button>
+          <button className="cart_reset" onClick={()=> dispatch(resetCart(), handleCloseCart())}>Reset Cart</button>
         </div> 
       </div> 
 )}    

@@ -154,7 +154,7 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
             </NavLink >
             <div className="card-price">
               <div className="">
-                  <span className="old_price">${item?.attributes.oldPrice || item?.attributes.price + 20}</span>
+                  <span className="old_price">{item?.attributes.oldPrice ? `$${item.attributes.oldPrice}` : null}</span>
                   <span className="price">${item?.attributes.price}</span>
               </div>
               <div className="buy-icon" onClick={()=> handleAddToCart(item)}> 
