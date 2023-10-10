@@ -97,8 +97,9 @@ const SearchBar = ({setResults,setShowList, input, setInput}) => {
             title.toLowerCase().includes(value.toLowerCase())
           );
         });
-        setResults(results);
-        setHasResults(results.length > 0);
+        const limitedResults = results.slice(0, 10);
+        setResults(limitedResults);
+        setHasResults(limitedResults.length > 0);
 
       };
     

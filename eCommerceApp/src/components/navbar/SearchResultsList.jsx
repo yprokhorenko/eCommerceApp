@@ -9,6 +9,7 @@ const Wrapper = styled.div`
     padding: 10px 20px;
     display: flex;
     align-items: center;
+   
   }
 
   .search-result:hover {
@@ -16,6 +17,7 @@ const Wrapper = styled.div`
   }
 
   .results-list {
+    box-shadow: 0px 25px 9px -26px rgba(0,0,0,0.1);
     left: 0;
     width: 88.5%;
     background-color: white;
@@ -27,6 +29,9 @@ const Wrapper = styled.div`
     color: black;
     position: absolute;
     border-top: 1px solid #ddd; 
+    max-height: 305px;
+    overflow: scroll;
+    overflow-x: hidden;
   
   }
   
@@ -47,6 +52,7 @@ const Wrapper = styled.div`
     gap: 20px;
     cursor: pointer;
   }
+  
 `;
 
 const SearchResultsList = ({  results, setShowList,setInput }) => {

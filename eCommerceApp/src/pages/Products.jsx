@@ -4,20 +4,20 @@ import "./Products.scss";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 
-const data = [
-  {
-    id: 1, title: "Hat", isNew: true, price: 12, oldPrice: 20, img1: "https://i.ibb.co/wcR8df2/hat1.png", img2: "https://i.ibb.co/x2Jmt4P/hat1-2.png"
-  },
-  {
-    id: 2, title: "Shirt", isNew: false, price: 25, oldPrice: 30, img1: "https://i.ibb.co/0Gy0kyb/shirt1.png", img2: "https://i.ibb.co/2Fht0fS/shirt1-2.png"
-  },
-  {
-    id: 3, title: "Pants", isNew: true, price: 35, oldPrice: 50, img1: "https://i.ibb.co/yNgCGCH/pants1.png", img2: "https://i.ibb.co/X7k1sH0/pants1-2.png"
-  },
-  {
-    id: 4, title: "Shoes", isNew: false, price: 60, oldPrice: 80, img1: "https://i.ibb.co/cDNNj9Q/shoes1.png", img2: "https://i.ibb.co/Z80YSh3/shoes1-2.png"
-  },
-]
+// const data = [
+//   {
+//     id: 1, title: "Hat", isNew: true, price: 12, oldPrice: 20, img1: "https://i.ibb.co/wcR8df2/hat1.png", img2: "https://i.ibb.co/x2Jmt4P/hat1-2.png"
+//   },
+//   {
+//     id: 2, title: "Shirt", isNew: false, price: 25, oldPrice: 30, img1: "https://i.ibb.co/0Gy0kyb/shirt1.png", img2: "https://i.ibb.co/2Fht0fS/shirt1-2.png"
+//   },
+//   {
+//     id: 3, title: "Pants", isNew: true, price: 35, oldPrice: 50, img1: "https://i.ibb.co/yNgCGCH/pants1.png", img2: "https://i.ibb.co/X7k1sH0/pants1-2.png"
+//   },
+//   {
+//     id: 4, title: "Shoes", isNew: false, price: 60, oldPrice: 80, img1: "https://i.ibb.co/cDNNj9Q/shoes1.png", img2: "https://i.ibb.co/Z80YSh3/shoes1-2.png"
+//   },
+// ]
 
 export default function Products()  {
   const catId = parseInt(useParams().id);
@@ -26,7 +26,7 @@ export default function Products()  {
   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
   const { data, loading, error } = useFetch(
-    `sub-categories?[filters][categories][id][$eq]=${catId}`
+    `/sub-categories?[filters][categories][id][$eq]=${catId}`
   );
   console.log(data)
 
