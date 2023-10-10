@@ -9,6 +9,7 @@ const Wrapper = styled.section`
     color: white;
     display: flex;
     justify-content: center;
+    height: 65px;
   }
 
   .contact-container {
@@ -68,10 +69,12 @@ export default function Contact() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          color: "green",
-        }}
+          color: "white",
+          height: "65px",
+          backgroundColor: "#2879fe"  
+          }}
       >
-        Thanks for joining!
+        Thanks for joining! :)
       </p>
     );
   }
