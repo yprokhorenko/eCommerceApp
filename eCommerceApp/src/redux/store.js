@@ -20,6 +20,8 @@ import {
 } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import navbarSlice from "./navbarSlice";
+import productsSlice from "./productsSlice";
+
 
 
 const persistConfig = {
@@ -34,6 +36,7 @@ export const store = configureStore({
   reducer: {
     cart: persistedReducer,
     navbar: navbarSlice,
+    products: productsSlice
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

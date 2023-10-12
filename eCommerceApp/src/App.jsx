@@ -5,10 +5,19 @@ import Product from "./pages/Product";
 import Products from "./pages/Products";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import React from 'react';
+import React, { useEffect } from "react";
 import Error from "./components/Error";
+import { getProducts } from "./redux/productsSlice";
+import { useDispatch } from "react-redux";
 
 const App = () => {
+  
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+       dispatch(getProducts());
+     }, []);
+
   return (
     <div className="wrapper">
       <Router>
