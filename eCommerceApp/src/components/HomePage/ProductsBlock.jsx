@@ -1,13 +1,15 @@
-import Card from "./Card";
-import useFetch from "../hooks/useFetch";
-
+import Card from "../Card";
 import styled from "styled-components";
+import { useSelector } from 'react-redux';
 
 const Wrapper = styled.section`
-  .featuredProducts {
+  .productsContainer {
     max-width: 1260px;
     margin: 100px auto;
     padding: 0 30px;
+    
+    .productsItems {
+    }
 
     .top {
       display: flex;
@@ -31,33 +33,31 @@ const Wrapper = styled.section`
   }
 `;
 
-const FeaturedProducts = ({ type, desc }) => {
-  const { data, loading, error } = useFetch(
-    `products?populate=*&[filters][type][$eq]=${type}`
-  );
-
-  const limitedItems = data ? data.slice(0, 4) : [];
+const ProductsBlock = ({ type, desc, products }) => {
+  const productsLoading  = useSelector((state) => state.products.productsLoading);
+  const productsError = useSelector((state) => state.products.productsError ) 
   
   return (
     <Wrapper>
-      <div className="featuredProducts">
-        <div className="top">
+      <div className="productsContainer">
+     <div className="productsItems">
+     <div className="top">
           <h2 className="top-title">
-            {" "}
             {type.charAt(0).toUpperCase() + type.slice(1)} Products
           </h2>
           <p className="top-desc">{desc}</p>
         </div>
         <div className="bottom">
-          {error
+          {productsError
             ? "Something went wrong!"
-            : loading
-            ? "Loading"
-            : limitedItems.map((item) => <Card item={item} key={item.id} />)}
+            : productsLoading
+            ? "Loading ..."
+            : products.slice(0,4).map((item) => <Card item={item} key={item.id} />)}
         </div>
+     </div>
       </div>
     </Wrapper>
   );
 };
 
-export default FeaturedProducts;
+export default ProductsBlock;

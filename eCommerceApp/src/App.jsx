@@ -6,12 +6,11 @@ import Products from "./pages/Products";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import React, { useEffect } from "react";
-import Error from "./components/Error";
 import { getProducts } from "./redux/productsSlice";
 import { useDispatch } from "react-redux";
 
 const App = () => {
-  
+
     const dispatch = useDispatch();
 
     useEffect(() => {

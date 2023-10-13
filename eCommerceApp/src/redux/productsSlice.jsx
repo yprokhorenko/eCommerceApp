@@ -1,9 +1,6 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {products_url} from "../constants";
-import { useEffect } from "react";
-
-
 
 export const getProducts = createAsyncThunk(
     "products/getProducts",
@@ -11,24 +8,21 @@ export const getProducts = createAsyncThunk(
       try {
         const res = await axios(products_url);
         console.log("res", res.data);
-
         return res.data;
-
-
       } catch (err) {
-        console.log(err);
+        console.log("err", err);
         return thunkAPI.rejectWithValue(err);
       }
     }
   );
   
 
-
   const initialState = {
     products: [],
     featuredProducts: [],
-    loading: false, 
-    error: null,
+    freeShippingProducts: [],
+    productsLoading: false, 
+    productsError: null,
   };
   
   export const productsSlice = createSlice({
@@ -36,25 +30,30 @@ export const getProducts = createAsyncThunk(
     initialState,
     reducers: {
        
-
+      
     },
     extraReducers: (builder) => {
       builder
         .addCase(getProducts.pending, (state) => {
-          state.loading = true; 
-          state.error = null; 
+          state.productsLoading = true; 
+          state.productsError = null; 
         })
         .addCase(getProducts.fulfilled, (state, action) => {
-          state.loading = false; 
+          state.productsLoading = false; 
           state.products = action.payload; 
-          state.error = null; 
+          state.featuredProducts = state.products.filter((product) => product.featured === true);
+          state.freeShippingProducts = state.products.filter((product)=> product.shipping === true);
+          state.productsError = null; 
+
         })
         .addCase(getProducts.rejected, (state, action) => {
-          state.loading = false; 
-          state.error = action.error.message; 
+          state.productsLoading = false; 
+          state.productsError = action.error.message; 
         });
     },
   });
+
+  
 export const {  } = productsSlice.actions;
 
 export default productsSlice.reducer;

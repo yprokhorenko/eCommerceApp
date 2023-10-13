@@ -7,9 +7,8 @@ import { addToCart } from "../redux/cartSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useFetch from "../hooks/useFetch";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {HiCheckCircle} from "react-icons/hi"
-
 import { setIsCartOpen} from "../redux/cartSlice";
 
 
@@ -108,7 +107,9 @@ const Wrapper = styled.div`
 
 
 export default function Card({item}) {
-  console.log("item",item)
+  const products = useSelector((state) => state.products.products) 
+
+  console.log("card comp",products)
    const [isAddedToCart, setIsAddedToCart] = useState(true);
    const [quantity, setQuantity] = useState(1);
    const id = useParams().id;
@@ -124,10 +125,10 @@ console.log("product", product)
   if (!existingProduct) {
     dispatch(addToCart({ 
       id: product.id,
-      title: product.attributes.title,
-      desc: product.attributes.desc,
-      price: product.attributes.price,
-      img: "http://localhost:1337" + product.attributes?.img?.data?.attributes?.url,
+      name: product.name,
+      description: product.description,
+      price: product.price,
+      image: product.image,
       quantity: 1, 
     }));
   }
@@ -146,16 +147,17 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
           <div className="card">
            <NavLink to={`/product/${item.id}`} className="card_link" >
                 <div className="card_img">
-                  {item?.attributes.isNew && <span className="new-season">New Season</span>}
-                  <img src={"http://localhost:1337" + item?.attributes?.img?.data?.attributes?.url} alt="" className="image-main" />
-                  <img src={"http://localhost:1337" + item?.attributes?.img2?.data?.attributes?.url} alt="" className="image-sec" />
+                  {item?.shipping && <span className="new-season">Free Shipping</span>}
+                  
+                  <img src={item.image} alt="" className="image-main" />
+                  <img src={item.image} alt="" className="image-sec" />
                 </div>
-                <h3 className="card-title">{item.attributes.title}</h3>
+                <h3 className="card-title">{item.title}</h3>
             </NavLink >
             <div className="card-price">
               <div className="">
-                  <span className="old_price">{item?.attributes.oldPrice ? `$${item.attributes.oldPrice}` : null}</span>
-                  <span className="price">${item?.attributes.price}</span>
+                  <span className="old_price">{item.oldPrice ? `$${item.oldPrice}` : null}</span>
+                  <span className="price">${item.price/100}</span>
               </div>
               <div className="buy-icon" onClick={()=> handleAddToCart(item)}> 
               <MdOutlineShoppingCart/>

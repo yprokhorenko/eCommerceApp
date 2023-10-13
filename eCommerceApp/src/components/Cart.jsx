@@ -205,12 +205,12 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
               <div className="cart_item" key={item.id}>
                 <Link  Link to={`/product/${item.id}`} className="cart_main" onClick = {handleCloseCart}>
                   <div className="cart_img">
-                    <img src={item.img} alt="" className="cartImg_link" />
+                    <img src={item.image} alt="" className="cartImg_link" />
                   </div>
                   <div className="cart_info">
-                    <h4 className="cart_name">{item.title}</h4>
-                    <p className="cart_desc">{item.desc?.substring(0, 50)}</p>
-                    <p className="cart_price"> {item.quantity} x ${item.price}</p>
+                    <h4 className="cart_name">{item.name}</h4>
+                    <p className="cart_desc">{item.description.substring(0, 50)}</p>
+                    <p className="cart_price"> {item.quantity} x ${item.price/100}</p>
                   </div>
                 </Link>
                 <div className="">
@@ -231,7 +231,7 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
           </div>
           <div className="cart_total">
             <h3 className="subtotal">Subtotal:</h3>
-            <h3 className="subtotal_figure">$ {totalPrice()}</h3>
+            <h3 className="subtotal_figure">$ {totalPrice()/100}</h3>
           </div>
           <button className="cart_checkout">proceed to checkout</button>
           <button className="cart_reset" onClick={()=> dispatch(resetCart(), handleCloseCart())}>Reset Cart</button>
