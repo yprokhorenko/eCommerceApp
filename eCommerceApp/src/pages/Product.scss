@@ -1,39 +1,12 @@
 .product {
     padding: 20px 50px;
     display: flex;
-    gap: 50px;
+    gap: 20px;
     margin-top: 60px;
 
     .left {
-        flex: 1.5;
         display: flex;
-        gap: 20px;
-
-
-        .images {
-            flex: 1;
-
-            img {
-                width: 100%;
-                height: 150px;
-                width: 180px;
-                object-fit: cover;
-                cursor: pointer;
-                margin-bottom: 10px;
-                object-position: top;
-
-            }
-        }
-
-        .mainImg {
-            flex: 5;
-
-            img {
-                width: 100%;
-                max-height: 800px;
-                object-fit: contain;
-            }
-        }
+        margin-right: 30px;
     }
 
     .right {
