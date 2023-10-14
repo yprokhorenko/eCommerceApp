@@ -7,40 +7,53 @@ import {
 import { HiOutlineShoppingCart,
   HiShoppingCart} from "react-icons/hi" 
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch,useSelector  } from "react-redux";
 import { setIsCartOpen} from "../redux/cartSlice";
-
-
+import { getSingleProduct } from "../redux/productsSlice";
+import { single_product_url } from "../constants";
+import Loading from "../components/Loading";
+import BreadcrumbTrail from "../components/BreadcrumbTrail"
 
 export default function Product() {
   const dispatch = useDispatch();
   const id = useParams().id;
-  const [selectedImg, setSelectedImg] = useState(0);
+
+  useEffect(()=> {
+    dispatch(getSingleProduct(`${single_product_url}${id}`));
+  }, [id])
+  
+const product = useSelector((state)=>state.products.product)
+const productLoading = useSelector((state)=>state.products.productLoading)
+
+
+console.log("product",product)
+  // const [selectedImg, setSelectedImg] = useState(0);
   const [quantity, setQuantity] = useState(1);
-  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
   const [isAddedToCart, setIsAddedToCart] = useState(true);
-  const images = [
-    "http://localhost:1337" + data?.attributes?.img?.data?.attributes?.url,
-    "http://localhost:1337" + data?.attributes?.img2?.data?.attributes?.url,
-  ];
+
+
+//   const firstImage = product?.images[0].url;
+//   const secondImage = product?.images[1].url;
+// const images = [firstImage,secondImage];
 
   
+console.log("product",product)
+  
   const cartItems = useSelector((state) => state.cart.products);
-  const checkIsAddedToCart = cartItems.some((cartItem) => cartItem.id === data.id);
-  const isItemInCart = cartItems.some((cartItem) => cartItem.id === data.id);
+  const checkIsAddedToCart = cartItems.some((cartItem) => cartItem.id === product.id);
+  const isItemInCart = cartItems.some((cartItem) => cartItem.id === product.id);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
 
         const handleAddToCart = () => {
-           const existingProduct = cartItems.find((item) => item.id === data.id);
+           const existingProduct = cartItems.find((item) => item.id === product.id);
               if (!existingProduct) {
               dispatch(addToCart({
-                id: data.id,
-                title: data.attributes.title, 
-                desc: data.attributes.desc, 
-                price: data.attributes.price, 
-                img: "http://localhost:1337" + data?.attributes?.img?.data?.attributes?.url, 
+                id: product.id,
+                name: product.name, 
+                description: product.description, 
+                price: product.price, 
+                image: product.url, 
                 quantity 
               })); }
               setIsAddedToCart(true);
@@ -48,22 +61,23 @@ export default function Product() {
                 dispatch(setIsCartOpen(!isCartOpen));
               
             };}
-     console.log({data})
 
-     
+            if (productLoading) {
+              return <Loading/>
+             }
   return (
     <div className="product">
-      <div className="left">
+      {/* <div className="left">
         <div className="images">
           <img
             className="image"
-            src={images[0]}
+            src={firstImage}
             alt=""
             onClick={(e) => setSelectedImg(0)}
           />
           <img
             className="image"
-            src={images[1]}
+            src={secondImage}
             alt=""
             onClick={(e) => setSelectedImg(1)}
           />
@@ -71,12 +85,13 @@ export default function Product() {
         <div className="mainImg">
           <img src={images[selectedImg]} alt="" />
         </div>
-      </div>
-      
+      </div> */}
+         <BreadcrumbTrail title={product.name} product />
       <div className="right">
-        <h1>{data?.attributes?.title}</h1>
-        <span className="price">${data?.attributes?.price}</span>
-        <p>{data?.attributes?.desc}</p>
+        <h1>{product?.name}</h1>
+        <p> {product.stars}</p> 
+        <span className="price">${product?.price/100}</span>
+        <p>{product?.description}</p>
         <div className="quantity">
           <button
             onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
@@ -86,13 +101,16 @@ export default function Product() {
           {quantity}
           <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
         </div> 
-        <button className={`add ${checkIsAddedToCart ? 'btn-success' : ''}`} onClick={handleAddToCart} >
-  
-        {checkIsAddedToCart? <div className="add-btn-content"><HiShoppingCart /> <span>ADDED</span></div> 
-                             :
-                             <div className="add-btn-content"><HiOutlineShoppingCart  /> <span>ADD TO CART</span> </div> }
-       
-        </button>
+        {product.stock < 1 ? "Out of stock" : (
+  <button className={`add ${checkIsAddedToCart ? 'btn-success' : ''}`} onClick={handleAddToCart}>
+    {checkIsAddedToCart ? (
+      <div className="add-btn-content"><HiShoppingCart /> <span>ADDED</span></div>
+    ) : (
+      <div className="add-btn-content"><HiOutlineShoppingCart  /> <span>ADD TO CART</span></div>
+    )}
+  </button>
+)}
+        
         <div className="links">
           <div className="item">
             <MdFavoriteBorder /> ADD TO WISH LIST
