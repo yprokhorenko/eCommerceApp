@@ -15,6 +15,7 @@ import { single_product_url } from "../constants";
 import Loading from "../components/Loading";
 import BreadcrumbTrail from "../components/BreadcrumbTrail"
 import ProductImages from "../components/ProductImages";
+import Stars from "../components/Stars";
 
 export default function Product() {
   const dispatch = useDispatch();
@@ -65,7 +66,7 @@ export default function Product() {
       <div className="right">
         <BreadcrumbTrail title={product.name} product />
         <h1>{product?.name}</h1>
-        <p> {product.stars}</p> 
+        <Stars stars={product.stars} reviews={product.reviews} />
         <span className="price">${product?.price/100}</span>
         <p>{product?.description}</p>
         <div className="quantity">
