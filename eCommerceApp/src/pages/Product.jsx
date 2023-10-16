@@ -28,13 +28,14 @@ export default function Product() {
   console.log("product",product)
   const productLoading = useSelector((state)=>state.products.productLoading)
 
-  const [quantity, setQuantity] = useState(1);
+
   const [isAddedToCart, setIsAddedToCart] = useState(true);
 
   const cartItems = useSelector((state) => state.cart.products);
   const checkIsAddedToCart = cartItems.some((cartItem) => cartItem.id === product.id);
   const isItemInCart = cartItems.some((cartItem) => cartItem.id === product.id);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
+  const [amount, setAmount] = useState(1);
 
   const handleAddToCart = () => {
            const existingProduct = cartItems.find((item) => item.id === product.id);
@@ -45,7 +46,7 @@ export default function Product() {
                 description: product.description, 
                 price: product.price, 
                 image: product.url, 
-                quantity 
+                amount 
               })); }
               setIsAddedToCart(true);
               if (isItemInCart && isAddedToCart) {
@@ -71,8 +72,7 @@ export default function Product() {
 
         <div className="left">
   {product && product.images && (
-    <AddToCartSection handleAddToCart={handleAddToCart} checkIsAddedToCart={checkIsAddedToCart} setQuantity={setQuantity}
-    quantity={quantity} product={product}  />
+    <AddToCartSection handleAddToCart={handleAddToCart} checkIsAddedToCart={checkIsAddedToCart} product={product} setAmount={setAmount} amount={amount} />
   )}
 </div>
         

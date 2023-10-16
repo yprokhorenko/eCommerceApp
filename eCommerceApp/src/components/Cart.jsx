@@ -4,7 +4,7 @@ import {  removeItem, resetCart } from "../redux/cartSlice";
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import {useState} from "react";
-import { increaseQuantity, decreaseQuantity } from "../redux/cartSlice";
+import { increaseamount, decreaseamount } from "../redux/cartSlice";
 
 const Wrapper = styled.section`
       position: absolute;
@@ -31,7 +31,7 @@ const Wrapper = styled.section`
     }
   }
 
-  .quantity {
+  .amount {
             display: flex;
             align-items: center;
             gap: 10px;
@@ -174,10 +174,11 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
 
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
+  const productStock = useSelector((state) => state.products.product.stock);
 
   const totalPrice = () => {
     let total = 0;
-    products.forEach((item) => {total += item.quantity * item.price
+    products.forEach((item) => {total += item.amount * item.price
   })
       return total.toFixed(2)
   };
@@ -210,14 +211,14 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
                   <div className="cart_info">
                     <h4 className="cart_name">{item.name}</h4>
                     <p className="cart_desc">{item.description.substring(0, 50)}</p>
-                    <p className="cart_price"> {item.quantity} x ${item.price/100}</p>
+                    <p className="cart_price"> {item.amount} x ${item.price/100}</p>
                   </div>
                 </Link>
                 <div className="">
-                  <div className="quantity">
-                      <button onClick={() => dispatch(decreaseQuantity({ id: item.id }))}> - </button>
-                      {item.quantity} 
-                      <button onClick={() => dispatch(increaseQuantity({ id: item.id }))} > + </button>
+                  <div className="amount">
+                      <button onClick={() => dispatch(decreaseamount({ id: item.id, productStock }))}> - </button>
+                      {item.amount} 
+                      <button onClick={() => dispatch(increaseamount({ id: item.id, productStock }))} > + </button>
                   </div>
                 </div>
                 <div className="cart_btns" onClick={()=> {

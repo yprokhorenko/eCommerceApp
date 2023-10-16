@@ -104,14 +104,12 @@ const Wrapper = styled.div`
 `
 
 
-
-
 export default function Card({item}) {
   const products = useSelector((state) => state.products.products) 
 
   console.log("card comp",products)
    const [isAddedToCart, setIsAddedToCart] = useState(true);
-   const [quantity, setQuantity] = useState(1);
+   const [amount, setAmount] = useState(1);
    const id = useParams().id;
   //  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
    const dispatch = useDispatch();
@@ -129,7 +127,7 @@ console.log("product", product)
       description: product.description,
       price: product.price,
       image: product.image,
-      quantity: 1, 
+      amount: 1, 
     }));
   }
   setIsAddedToCart(true);

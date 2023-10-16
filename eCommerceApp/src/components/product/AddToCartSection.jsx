@@ -2,24 +2,10 @@ import React, { useState  } from "react";
 import { HiOutlineShoppingCart, HiShoppingCart } from "react-icons/hi";
 import styled from "styled-components";
 import {FaCheck} from 'react-icons/fa'
+import AmountButtons from "../AmountButtons";
 
 const Wrapper = styled.div`
-     .quantity {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 30px;
-
-            button {
-                width: 50px;
-                height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                border: none;
-            }
-        }
+    
         .add {
             width: 270px;
             padding: 10px;
@@ -61,7 +47,8 @@ const Wrapper = styled.div`
             width: 20px;
             border: none;
             border-radius: 9px;
-            opacity: 0.3;
+            opacity: 0.5;
+            cursor: pointer;
         }
 
         .activeColorBtn {
@@ -79,23 +66,20 @@ const AddToCartSection = ({
   product,
   handleAddToCart,
   checkIsAddedToCart,
-  setQuantity,
-  quantity
-  
+  setAmount, amount
 }) => {
 
     const [mainColor, setMainColor] = useState(product.colors[0]);
     console.log("mainColor",mainColor)
+   
+   
+            
+    
 
   return (
     <Wrapper>
-                                     {/* quantity buttons */}
-      <div className="quantity">
-        <button onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}> - </button>
-        {quantity}
-        <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
-      </div>
-
+                                     {/* Amount buttons */}
+     <AmountButtons product={product} setAmount={setAmount} amount={amount}  />
                                        {/* colors buttons */}
 
       <div className="colors">
@@ -103,8 +87,6 @@ const AddToCartSection = ({
         <div className="colorsButtons">
             {product.colors.map((color, index)=> {
                 return (
-
-
                   <button
                     key={index}
                     className={`${mainColor === color? 'colorBtn activeColorBtn': 'colorBtn'}  `}
