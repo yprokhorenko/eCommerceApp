@@ -3,7 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import styled from "styled-components";
 import { HiX } from "react-icons/hi";
-import useFetch from "../../hooks/useFetch";
+// import useFetch from "../../hooks/useFetch";
  
 const Wrapper = styled.div`
  display: flex;
@@ -82,26 +82,26 @@ input:focus {
 const SearchBar = ({setResults,setShowList, input, setInput}) => {
       const [hasResults, setHasResults] = useState(false); 
 
-      const { data, loading, error } = useFetch(
-        `/products/?populate=*`
-      );
-      console.log("data1",data)
+      // const { data, loading, error } = useFetch(
+      //   `/products/?populate=*`
+      // );
+      // console.log("data1",data)
       
-      const fetchData = (value) => {
-        if (!data) return; 
-        const results = data.filter((product) => {
-          const title = product.attributes.title;
-          return (
-            value &&
-            title &&
-            title.toLowerCase().includes(value.toLowerCase())
-          );
-        });
-        const limitedResults = results.slice(0, 10);
-        setResults(limitedResults);
-        setHasResults(limitedResults.length > 0);
+      // const fetchData = (value) => {
+      //   if (!data) return; 
+      //   const results = data.filter((product) => {
+      //     const title = product.attributes.title;
+      //     return (
+      //       value &&
+      //       title &&
+      //       title.toLowerCase().includes(value.toLowerCase())
+      //     );
+      //   });
+      //   const limitedResults = results.slice(0, 10);
+      //   setResults(limitedResults);
+      //   setHasResults(limitedResults.length > 0);
 
-      };
+      // };
     
       const handleChange = (value) => {
         setShowList(true)

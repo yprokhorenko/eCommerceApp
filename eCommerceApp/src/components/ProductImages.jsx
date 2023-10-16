@@ -37,7 +37,7 @@ const Wrapper = styled.div`
 
 const ProductImages = ({ images = [{ url: "" }] }) => {
   const [main, setMain] = useState(images[0]);
-  console.log("main", main);
+//   console.log("main", main);
 
   return (
     <Wrapper>

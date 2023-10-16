@@ -2,7 +2,7 @@ import { useState } from "react";
 import List from "../components/List";
 import "./Products.scss";
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
+// import useFetch from "../hooks/useFetch";
 
 // const data = [
 //   {
@@ -25,10 +25,10 @@ export default function Products()  {
   const [sort, setSort] = useState(null);
   const [selectedSubCats, setSelectedSubCats] = useState([]);
 
-  const { data, loading, error } = useFetch(
-    `/sub-categories?[filters][categories][id][$eq]=${catId}`
-  );
-  console.log(data)
+  // const { data, loading, error } = useFetch(
+  //   `/sub-categories?[filters][categories][id][$eq]=${catId}`
+  // );
+  // console.log(data)
 
   const handleChange = (e) => {
     const value = e.target.value;
@@ -46,7 +46,7 @@ export default function Products()  {
       <div className="products_left">
         <div className="filterItem">
           <h2>Product Categories</h2>
-          {data?.map((item) => (
+          {/* {data?.map((item) => (
             <div className="inputItem" key={item.id}>
               <input
                 type="checkbox"
@@ -56,7 +56,7 @@ export default function Products()  {
               />
               <label htmlFor={item.id}>{item.attributes.title}</label>
             </div>
-          ))}
+          ))} */}
         </div>
         <div className="filterItem">
           <h2>Filter by price</h2>
@@ -96,11 +96,11 @@ export default function Products()  {
         </div>
       </div>
       <div className="products_right">
-        <img
+        {/* <img
           className="catImg"
           src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
           alt=""
-        />
+        /> */}
         <List catId={catId} maxPrice={maxPrice} sort={sort} subCats={selectedSubCats}/>
       </div>
     </div>

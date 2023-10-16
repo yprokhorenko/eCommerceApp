@@ -4,8 +4,6 @@ import {
   MdFavoriteBorder,
   MdBalance
 } from "react-icons/md";
-import { HiOutlineShoppingCart,
-  HiShoppingCart} from "react-icons/hi" 
 import { useParams } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch,useSelector  } from "react-redux";
@@ -16,16 +14,17 @@ import Loading from "../components/Loading";
 import BreadcrumbTrail from "../components/BreadcrumbTrail"
 import ProductImages from "../components/ProductImages";
 import Stars from "../components/Stars";
+import AddToCartSection from "../components/product/AddToCartSection";
 
 export default function Product() {
   const dispatch = useDispatch();
   const id = useParams().id;
+  const product = useSelector((state)=>state.products.product)
 
   useEffect(()=> {
     dispatch(getSingleProduct(`${single_product_url}${id}`));
   }, [id])
   
-  const product = useSelector((state)=>state.products.product)
   console.log("product",product)
   const productLoading = useSelector((state)=>state.products.productLoading)
 
@@ -69,24 +68,14 @@ export default function Product() {
         <Stars stars={product.stars} reviews={product.reviews} />
         <span className="price">${product?.price/100}</span>
         <p>{product?.description}</p>
-        <div className="quantity">
-          <button
-            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
-          >
-            -
-          </button> 
-          {quantity}
-          <button onClick={() => setQuantity((prev) => prev + 1)}>+</button>
-        </div> 
-        {product.stock < 1 ? "Out of stock" : (
-  <button className={`add ${checkIsAddedToCart ? 'btn-success' : ''}`} onClick={handleAddToCart}>
-    {checkIsAddedToCart ? (
-      <div className="add-btn-content"><HiShoppingCart /> <span>ADDED</span></div>
-    ) : (
-      <div className="add-btn-content"><HiOutlineShoppingCart  /> <span>ADD TO CART</span></div>
-    )}
-  </button>
-)}
+
+        <div className="left">
+  {product && product.images && (
+    <AddToCartSection handleAddToCart={handleAddToCart} checkIsAddedToCart={checkIsAddedToCart} setQuantity={setQuantity}
+    quantity={quantity} product={product}  />
+  )}
+</div>
+        
         
         <div className="links">
           <div className="item">

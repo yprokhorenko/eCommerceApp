@@ -6,7 +6,7 @@ import {
 import { addToCart } from "../redux/cartSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import useFetch from "../hooks/useFetch";
+// import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 import {HiCheckCircle} from "react-icons/hi"
 import { setIsCartOpen} from "../redux/cartSlice";
@@ -113,7 +113,7 @@ export default function Card({item}) {
    const [isAddedToCart, setIsAddedToCart] = useState(true);
    const [quantity, setQuantity] = useState(1);
    const id = useParams().id;
-   const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
+  //  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
    const dispatch = useDispatch();
    const cartItems = useSelector((state)=> state.cart.products )  
    const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
