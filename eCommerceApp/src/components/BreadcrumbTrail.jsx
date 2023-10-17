@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Wrapper = styled.section`
 .container {
-
+  margin-top: 50px;
 }
 
 .links {
   color: #00A046;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
 }
 
@@ -24,7 +24,7 @@ const BreadcrumbTrail = ({ title, product }) => {
     <Wrapper>
       <div className="container">
         <h3 className="links">
-          <Link to="/">Home</Link>
+          <Link to="/">Home /  </Link>
           {product && <Link to="/products"> / Products / </Link>}
           <span className="activeBread">{title}</span>
         </h3>

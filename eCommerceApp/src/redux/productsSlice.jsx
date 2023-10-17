@@ -34,6 +34,7 @@ export const getProducts = createAsyncThunk(
   const initialState = {
     product: [],
     products: [],
+    filtered_products: [],
     featuredProducts: [],
     freeShippingProducts: [],
     productsLoading: false, 
@@ -47,8 +48,6 @@ export const getProducts = createAsyncThunk(
     name: "products",
     initialState,
     reducers: {
-       
-      
     },
     extraReducers: (builder) => {
         builder
@@ -61,6 +60,7 @@ export const getProducts = createAsyncThunk(
             state.products = action.payload;
             state.featuredProducts = state.products.filter((product) => product.featured === true);
             state.freeShippingProducts = state.products.filter((product) => product.shipping === true);
+            state.filtered_products = [...state.products];
             state.productsError = null;
           })
           .addCase(getProducts.rejected, (state, action) => {

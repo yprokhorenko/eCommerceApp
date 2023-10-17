@@ -6,7 +6,6 @@ import {
 import { addToCart } from "../redux/cartSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import useFetch from "../hooks/useFetch";
 import { useState } from "react";
 import {HiCheckCircle} from "react-icons/hi"
 import { setIsCartOpen} from "../redux/cartSlice";
@@ -111,7 +110,6 @@ export default function Card({item}) {
    const [isAddedToCart, setIsAddedToCart] = useState(true);
    const [amount, setAmount] = useState(1);
    const id = useParams().id;
-  //  const { data, loading, error } = useFetch(`/products/${id}?populate=*`);
    const dispatch = useDispatch();
    const cartItems = useSelector((state)=> state.cart.products )  
    const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
@@ -150,7 +148,7 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
                   <img src={item.image} alt="" className="image-main" />
                   <img src={item.image} alt="" className="image-sec" />
                 </div>
-                <h3 className="card-title">{item.title}</h3>
+                <h3 className="card-title">{item.name}</h3>
             </NavLink >
             <div className="card-price">
               <div className="">
