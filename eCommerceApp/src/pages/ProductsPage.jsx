@@ -32,7 +32,7 @@ const Wrapper = styled.div`
 `;
 
 const ProductsPage = () => {
-  const products = useSelector((state) => state.products.products);
+  const products = useSelector((state) => state.products.filtered_products);
 
   return (
     <Wrapper>
@@ -43,7 +43,7 @@ const ProductsPage = () => {
           <Filters />
         </div>
         <div className="secondCol">
-          <Sort />
+          <Sort products={products} />
 
           <div className="list">
             <ProductList products={products} />
