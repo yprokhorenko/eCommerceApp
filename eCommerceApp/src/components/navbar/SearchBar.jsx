@@ -3,7 +3,6 @@ import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import styled from "styled-components";
 import { HiX } from "react-icons/hi";
-// import useFetch from "../../hooks/useFetch";
  
 const Wrapper = styled.div`
  display: flex;

@@ -39,15 +39,18 @@ export const getProducts = createAsyncThunk(
     freeShippingProducts: [],
     productsLoading: false, 
     productsError: null,
-
     productLoading: false,
-    productError: null
+    productError: null,
+    sort: "name-a"
   };
   
   export const productsSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
+      updateSort: (state, action) => {
+        state.sort = action.payload;
+      },
     },
     extraReducers: (builder) => {
         builder
@@ -84,6 +87,6 @@ export const getProducts = createAsyncThunk(
     });
 
 
-export const {  } = productsSlice.actions;
+export const { updateSort } = productsSlice.actions;
 
 export default productsSlice.reducer;
