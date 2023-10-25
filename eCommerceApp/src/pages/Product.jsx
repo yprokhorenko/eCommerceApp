@@ -60,11 +60,11 @@ export default function Product() {
   return (
     <div className="product">
       <div className="left">
-       <ProductImages images={product.images} />
+      <ProductImages images={product.images} />
       </div>
          
       <div className="right">
-        <BreadcrumbTrail title={product.name} product />
+        <BreadcrumbTrail title={product.name} product={product} />
         <h1>{product?.name}</h1>
         <Stars stars={product.stars} reviews={product.reviews} />
         <span className="price">${product?.price/100}</span>

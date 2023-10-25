@@ -104,9 +104,8 @@ const Wrapper = styled.div`
 
 
 export default function Card({item}) {
-  const products = useSelector((state) => state.products.products) 
+  // const products = useSelector((state) => state.products.products) 
 
-  console.log("card comp",products)
    const [isAddedToCart, setIsAddedToCart] = useState(true);
    const [amount, setAmount] = useState(1);
    const id = useParams().id;
@@ -117,7 +116,6 @@ export default function Card({item}) {
 
 const handleAddToCart = (product) => {
   const existingProduct = cartItems.find((item) => item.id === product.id);
-console.log("product", product)
   if (!existingProduct) {
     dispatch(addToCart({ 
       id: product.id,
@@ -140,7 +138,7 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
   return (
       <Wrapper>
         
-          <div className="card">
+         <div className="card">
            <NavLink to={`/product/${item.id}`} className="card_link" >
                 <div className="card_img">
                   {item?.shipping && <span className="new-season">Free Shipping</span>}
@@ -160,7 +158,7 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
               
               {isItemInCart && <HiCheckCircle className="checked-icon"/> }   </div>
             </div>
-          </div>
+          </div> 
         
       </Wrapper>
   )
