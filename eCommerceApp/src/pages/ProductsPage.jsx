@@ -4,7 +4,7 @@ import ProductList from "../components/productsPage/ProductList";
 import styled from "styled-components";
 import Sort from "../components/productsPage/Sort";
 import { useDispatch, useSelector } from "react-redux";
-import { startSort, updateSort } from "../redux/productsSlice";
+import { filterProducts, startSort, updateFilters, updateSort } from "../redux/productsSlice";
 import { useEffect } from "react";
 
 const Wrapper = styled.div`
@@ -35,8 +35,11 @@ const Wrapper = styled.div`
 
 const ProductsPage = () => {
   const dispatch = useDispatch();
+  const allProducts = useSelector((state) => state.products.products);
+
   const products = useSelector((state) => state.products.filtered_products);
   const sort = useSelector((state) => state.products.sort);
+  const filters = useSelector((state) => state.products.filters);
 
   const handleUpdateSort = (e) => {
     // const name = e.target.name;
@@ -45,8 +48,22 @@ const ProductsPage = () => {
   }
 
   useEffect(()=> {
+    // dispatch(filterProducts()) 706 14m
     dispatch(startSort());
-  },[sort])
+  },[sort, filters])
+
+  const updateFilter = (e)=> {
+     const name = e.target.name;
+     const value = e.target.value;
+     console.log("name", name, value)
+     dispatch(updateFilters({name,value}))
+  }
+  
+  const clearFilter = () => {
+
+  }
+
+
 
   return (
     <Wrapper>
@@ -54,7 +71,7 @@ const ProductsPage = () => {
 
       <div className="wrapper">
         <div className="filtersSection">
-          <Filters />
+          <Filters updateFilter={updateFilter} clearFilter={clearFilter} />
         </div>
         <div className="secondCol">
           <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>

@@ -78,11 +78,19 @@ export const productsSlice = createSlice({
         tempProducts = tempProducts.sort((a, b) => {
           return b.name.localeCompare(a.name);
         });
-      
       }
-
       return { ...state, filtered_products: tempProducts };
     },
+
+    updateFilters: (state, action) => {
+      const {name, value} = action.payload;
+      return {...state, filters:{...state.filters,[name]:value} }
+     },
+
+    filterProducts: (state, action) => {
+      return {...state}
+    }
+
   },
   extraReducers: (builder) => {
     builder
@@ -106,7 +114,6 @@ export const productsSlice = createSlice({
         const maxPrice = Math.max(...prices);
         state.filters.max_price = maxPrice;
         state.filters.price = maxPrice;
-
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.productsLoading = false;
@@ -128,6 +135,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { updateSort, startSort } = productsSlice.actions;
+export const { updateSort, startSort,updateFilters,filterProducts } = productsSlice.actions;
 
 export default productsSlice.reducer;
