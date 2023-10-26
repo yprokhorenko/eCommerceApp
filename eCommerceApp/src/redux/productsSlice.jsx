@@ -43,9 +43,9 @@ const initialState = {
   sort: "name-a",
   filters: {
     text: "",
-    company: "All",
-    category: "All",
-    color: "All",
+    company: "all",
+    category: "all",
+    color: "all",
     min_price: 0,
     max_price: 0,
     price: 0,

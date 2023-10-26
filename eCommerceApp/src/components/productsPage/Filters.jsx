@@ -1,10 +1,39 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { getUniqueValues } from "../../constants";
+import { updateFilters } from "../../redux/productsSlice";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  .container {
+    padding: 20px;
+  }
 
-const Filters = ({ clearFilter, updateFilter }) => {
+  .text-input {
+    margin-bottom: 20px;
+    padding: 4px 7px;
+  }
+
+  .form {
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: column;
+  }
+  .category-button {
+    text-align: left;
+    border: none;
+    background-color: transparent;
+    padding: 5px;
+    cursor: pointer;
+  }
+
+  .button-active {
+    font-weight: bolder;
+  }
+`;
+
+const Filters = ({ clearFilter, updateFiltersComponent  }) => {
   const dispatch = useDispatch();
   const {
     text,
@@ -21,7 +50,6 @@ const Filters = ({ clearFilter, updateFilter }) => {
   const categories = getUniqueValues(products, "category");
   const companies = getUniqueValues(products, "company");
   const colors = getUniqueValues(products, "colors");
-  console.log("colors", colors);
 
   return (
     <Wrapper>
@@ -31,10 +59,29 @@ const Filters = ({ clearFilter, updateFilter }) => {
             type="text"
             name="text"
             placeholder="search"
-            className="input"
+            className="text-input"
             value={text}
-            onChange={updateFilter}
+            onChange={updateFiltersComponent }
           />
+
+          <div className="categories">
+            <h5>Category</h5>
+            {categories.map((item, index) => {
+              return (
+                <button
+                  className={`category-button ${
+                    category === item.toLowerCase()? "button-active" : null
+                  }  `}
+                  key={index}
+                  onClick={updateFiltersComponent}
+                  type="button"
+                  name="category"
+                >
+                  {item}
+                </button>
+              );
+            })}
+          </div>
         </form>
       </div>
     </Wrapper>

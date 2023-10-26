@@ -52,10 +52,14 @@ const ProductsPage = () => {
     dispatch(startSort());
   },[sort, filters])
 
-  const updateFilter = (e)=> {
-     const name = e.target.name;
-     const value = e.target.value;
-     console.log("name", name, value)
+  const updateFiltersComponent  = (e)=> {
+     let name = e.target.name;
+     let value = e.target.value;
+
+     if (name === "category") {
+        value= e.target.textContent;
+     }
+
      dispatch(updateFilters({name,value}))
   }
   
@@ -71,7 +75,7 @@ const ProductsPage = () => {
 
       <div className="wrapper">
         <div className="filtersSection">
-          <Filters updateFilter={updateFilter} clearFilter={clearFilter} />
+          <Filters updateFiltersComponent ={updateFiltersComponent } clearFilter={clearFilter} />
         </div>
         <div className="secondCol">
           <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
