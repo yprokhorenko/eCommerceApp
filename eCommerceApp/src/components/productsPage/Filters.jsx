@@ -33,7 +33,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Filters = ({ clearFilter, updateFiltersComponent  }) => {
+const Filters = ({ clearFilter, updateFiltersComponent }) => {
   const dispatch = useDispatch();
   const {
     text,
@@ -61,7 +61,7 @@ const Filters = ({ clearFilter, updateFiltersComponent  }) => {
             placeholder="search"
             className="text-input"
             value={text}
-            onChange={updateFiltersComponent }
+            onChange={updateFiltersComponent}
           />
 
           <div className="categories">
@@ -70,7 +70,7 @@ const Filters = ({ clearFilter, updateFiltersComponent  }) => {
               return (
                 <button
                   className={`category-button ${
-                    category === item.toLowerCase()? "button-active" : null
+                    category === item.toLowerCase() ? "button-active" : null
                   }  `}
                   key={index}
                   onClick={updateFiltersComponent}
@@ -81,6 +81,20 @@ const Filters = ({ clearFilter, updateFiltersComponent  }) => {
                 </button>
               );
             })}
+          </div>
+
+          <div className="companies">
+            <h5>Company</h5>
+            <select
+              className={company}
+              onChange={updateFiltersComponent}
+              value={company}
+              name="company"
+            >
+              {companies.map((item, index) => {
+                return <option value={item}>{item}</option>;
+              })}
+            </select>
           </div>
         </form>
       </div>
