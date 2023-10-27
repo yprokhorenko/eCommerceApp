@@ -62,6 +62,9 @@ const ProductsPage = () => {
      if (name === "color") {
       value= e.target.dataset.color;
    }
+      if (name === "price") {
+        value = Number(value);
+    }
 
      dispatch(updateFilters({name,value}))
   }

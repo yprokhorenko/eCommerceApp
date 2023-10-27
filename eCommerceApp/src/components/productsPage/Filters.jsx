@@ -162,6 +162,18 @@ const Filters = ({ clearFilter, updateFiltersComponent }) => {
               
             </div>
           </div>
+
+          <div className="form-control">
+            <h5>Price</h5>
+            <div className="price">
+              <p className="price-label"> ${price/100}</p>
+                  <input type="range" name="price" onChange={updateFiltersComponent}
+                  value={price} min={min_price} max={max_price}
+                  />
+            </div>
+          </div>
+          
+
         </form>
       </div>
     </Wrapper>
