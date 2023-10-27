@@ -59,6 +59,9 @@ const ProductsPage = () => {
      if (name === "category") {
         value= e.target.textContent;
      }
+     if (name === "color") {
+      value= e.target.dataset.color;
+   }
 
      dispatch(updateFilters({name,value}))
   }
