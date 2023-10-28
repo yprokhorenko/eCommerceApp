@@ -4,7 +4,7 @@ import ProductList from "../components/productsPage/ProductList";
 import styled from "styled-components";
 import Sort from "../components/productsPage/Sort";
 import { useDispatch, useSelector } from "react-redux";
-import { filterProducts, startSort, updateFilters, updateSort } from "../redux/productsSlice";
+import { clearFilters, filterProducts, startSort, updateFilters, updateSort } from "../redux/productsSlice";
 import { useEffect } from "react";
 
 const Wrapper = styled.div`
@@ -52,25 +52,28 @@ const ProductsPage = () => {
     dispatch(startSort());
   },[sort, filters])
 
-  const updateFiltersComponent  = (e)=> {
-     let name = e.target.name;
-     let value = e.target.value;
+  const updateFiltersComponent = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
 
-     if (name === "category") {
-        value= e.target.textContent;
-     }
-     if (name === "color") {
-      value= e.target.dataset.color;
-   }
-      if (name === "price") {
-        value = Number(value);
+    if (name === "category") {
+      value = e.target.textContent;
+    }
+    if (name === "color") {
+      value = e.target.dataset.color;
+    }
+    if (name === "price") {
+      value = Number(value);
+    }
+    if (name === "shipping") {
+      value = e.target.checked;
     }
 
-     dispatch(updateFilters({name,value}))
-  }
+    dispatch(updateFilters({ name, value }));
+  };
   
   const clearFilter = () => {
-
+     dispatch(clearFilters())
   }
 
 

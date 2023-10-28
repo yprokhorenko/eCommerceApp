@@ -89,8 +89,21 @@ export const productsSlice = createSlice({
 
     filterProducts: (state, action) => {
       return {...state}
-    }
+    },
 
+    clearFilters: (state, action) => {
+      return {...state,
+       filters: {
+        ...state.filters,
+        text: "",
+        company: "all",
+        category: "all",
+        color: "all",
+        price: state.filters.max_price,
+        shipping: false,
+       }
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -135,6 +148,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { updateSort, startSort,updateFilters,filterProducts } = productsSlice.actions;
+export const { updateSort, startSort,updateFilters,filterProducts,clearFilters } = productsSlice.actions;
 
 export default productsSlice.reducer;

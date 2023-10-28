@@ -136,13 +136,20 @@ const Filters = ({ clearFilter, updateFiltersComponent }) => {
             <h5>Colors</h5>
             <div className="colors">
               {colors.map((item, index) => {
-
                 if (item === "all") {
-                      return (
-                          <button name="color" onClick={updateFiltersComponent} data-color='all'
-                          className={`${color==="all" ? "all-btn active" : "all-btn"}`}
-                          >all</button>
-                      )
+                  return (
+                    <button
+                      key={index}
+                      name="color"
+                      onClick={updateFiltersComponent}
+                      data-color="all"
+                      className={`${
+                        color === "all" ? "all-btn active" : "all-btn"
+                      }`}
+                    >
+                      all
+                    </button>
+                  );
                 }
                 return (
                   <button
@@ -151,30 +158,52 @@ const Filters = ({ clearFilter, updateFiltersComponent }) => {
                     key={index}
                     style={{ background: item }}
                     className={` ${
-                      color === item ? " color-btn active" : "color-btn" }`}
-                      data-color={item}
+                      color === item ? " color-btn active" : "color-btn"
+                    }`}
+                    data-color={item}
                   >
-                    {color === item ?  <FaCheck className="faCheckIcon"/> : null}          
+                    {color === item ? (
+                      <FaCheck className="faCheckIcon" />
+                    ) : null}
                   </button>
-                  
                 );
               })}
-              
             </div>
           </div>
 
           <div className="form-control">
             <h5>Price</h5>
             <div className="price">
-              <p className="price-label"> ${price/100}</p>
-                  <input type="range" name="price" onChange={updateFiltersComponent}
-                  value={price} min={min_price} max={max_price}
-                  />
+              <p className="price-label"> ${price / 100}</p>
+              <input
+                type="range"
+                name="price"
+                onChange={updateFiltersComponent}
+                value={price}
+                min={min_price}
+                max={max_price}
+              />
             </div>
           </div>
-          
 
+          <div className="form-control">
+            <div className="shipping">
+              <label htmlFor="shipping">Free Shipping</label>
+              <input
+                type="checkbox"
+                name="shipping"
+                onChange={updateFiltersComponent}
+                id="shipping"
+                checked={shipping}
+              />
+            </div>
+          </div>
         </form>
+        <div className="clear-btn">
+          <button className="" type="button" onClick={clearFilter}>
+            Clear Filters
+          </button>
+        </div>
       </div>
     </Wrapper>
   );
