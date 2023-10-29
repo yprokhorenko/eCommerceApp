@@ -83,27 +83,64 @@ export const productsSlice = createSlice({
     },
 
     updateFilters: (state, action) => {
-      const {name, value} = action.payload;
-      return {...state, filters:{...state.filters,[name]:value} }
-     },
+      const { name, value } = action.payload;
+      return { ...state, filters: { ...state.filters, [name]: value } };
+    },
 
     filterProducts: (state, action) => {
-      return {...state}
+      const { products } = state;
+      const { text, category, company,  color, price, shipping } = state.filters;
+      let tempProducts = [...products];
+
+        if (text) {
+          tempProducts = tempProducts.filter((product)=> {
+            return product.name.toLowerCase().startsWith(text )
+          } )
+        }
+
+        if (category !== "all") {
+          tempProducts = tempProducts.filter((product)=> 
+             product.category === category
+           )
+        }
+        if (company !== "all") {
+          tempProducts = tempProducts.filter((product)=> 
+             product.company === company
+           )
+        }
+
+        if (color !== "all") {
+          tempProducts = tempProducts.filter((product) => {
+            return product.colors.find((c) => c === color);
+          });
+        }
+
+        tempProducts = tempProducts.filter((product) => product.price <= price)
+
+        if (shipping) {
+          tempProducts = tempProducts.filter((product)=> 
+             product.shipping === true
+           )
+        }
+
+
+      return { ...state, filtered_products: tempProducts };
     },
 
     clearFilters: (state, action) => {
-      return {...state,
-       filters: {
-        ...state.filters,
-        text: "",
-        company: "all",
-        category: "all",
-        color: "all",
-        price: state.filters.max_price,
-        shipping: false,
-       }
-      }
-    }
+      return {
+        ...state,
+        filters: {
+          ...state.filters,
+          text: "",
+          company: "all",
+          category: "all",
+          color: "all",
+          price: state.filters.max_price,
+          shipping: false,
+        },
+      };
+    },
   },
   extraReducers: (builder) => {
     builder

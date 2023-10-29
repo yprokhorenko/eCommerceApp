@@ -48,7 +48,8 @@ const ProductsPage = () => {
   }
 
   useEffect(()=> {
-    // dispatch(filterProducts()) 706 14m
+    dispatch(filterProducts())
+    //  706 14m
     dispatch(startSort());
   },[sort, filters])
 
