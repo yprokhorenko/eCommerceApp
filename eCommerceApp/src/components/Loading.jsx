@@ -1,22 +1,13 @@
 import React from "react";
-import styled from "styled-components";
-const Wrapper = styled.div`
-  .dspldp {
-    position: absolute;
-    color: black;
-    font-size: 70px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 1000px;
-    width:1000px;
-  }
-`;
-const Loading = () => {
-  return <Wrapper className="">
+import preloader from "../assets/preloader.svg";
 
-    <div className="dspldp">Loading</div>
-  </Wrapper>;
+
+const Loading = () => {
+  return (
+      <div style={{ position: "absolute", left: "550px" }}>
+        <img src={preloader} style={{ width: "100px", height: "100px" }} />
+      </div>
+  );
 };
 
 export default Loading;

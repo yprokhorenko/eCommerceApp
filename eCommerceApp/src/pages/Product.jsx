@@ -25,7 +25,6 @@ export default function Product() {
     dispatch(getSingleProduct(`${single_product_url}${id}`));
   }, [id])
   
-  console.log("product",product)
   const productLoading = useSelector((state)=>state.products.productLoading)
 
 

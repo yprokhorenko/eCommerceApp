@@ -9,12 +9,13 @@ const Wrapper = styled.section`
 
 .links {
   color: #00A046;
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 500;
+  letter-spacing: 3px ;
 }
 
 .activeBread {
-  color: #333
+  color: #333;
 }
 
 `;

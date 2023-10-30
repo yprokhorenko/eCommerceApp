@@ -6,8 +6,12 @@ import Sort from "../components/productsPage/Sort";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilters, filterProducts, startSort, updateFilters, updateSort } from "../redux/productsSlice";
 import { useEffect } from "react";
+import Loading from "../components/Loading";
 
 const Wrapper = styled.div`
+   .trail {
+    margin-left: 250px;
+   }
   .wrapper {
     display: flex;
     gap: 20px;
@@ -26,6 +30,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
   }
+
   @media (max-width: 1199px) {
     .secondCol {
       width: 100%;
@@ -78,16 +83,27 @@ const ProductsPage = () => {
      dispatch(clearFilters())
   }
 
+  const productsLoading = useSelector((state)=> state.products.productsLoading)
 
+        if (productsLoading) {
+          return (
+            <main>
+              <Loading />
+            </main>
+          );
+        } 
 
   return (
     <Wrapper>
-      <BreadcrumbTrail title="Products" />
+     <div className="trail">
+     <BreadcrumbTrail title="Products" />
 
+     </div>
       <div className="wrapper">
         <div className="filtersSection">
           <Filters updateFiltersComponent ={updateFiltersComponent } clearFilter={clearFilter} />
         </div>
+        
         <div className="secondCol">
           <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
 
