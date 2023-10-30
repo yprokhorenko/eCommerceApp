@@ -42,22 +42,32 @@ const Wrapper = styled.div`
     color: white;
     position: fixed;
     z-index: 2;
+
   }
 
   .navbar_container {
-    width: 1500px;
+
     margin: 0 auto;
     display: flex;
     flex-direction: row;
     padding: 0 10px;
     align-items: center;
-    gap: 23px;
+    gap: 30px;
     justify-content: center  ;
+        position: relative;
+
   }
+
+  @media (max-width: 1200px) {
+     .navbar_container {
+      gap: 20px !important; 
+    }
+  }
+ 
 
 
   .logo-img {
-    width: 240px;
+    width: 200px;
   }
 
   .icon {
@@ -85,7 +95,7 @@ const Wrapper = styled.div`
     
   }
 
-  @media screen and (max-width: 1260px) {
+  @media screen and (max-width: 1250px) {
     .right-nav,
     .left_nav {
       gap: 10px;
@@ -93,17 +103,20 @@ const Wrapper = styled.div`
     }
 
     .logo-img {
-      width: 110px;
-    }
+      position: absolute;
+      bottom: 5px;
+      left: 50px;
+      clip: rect(0px, 40px, 40px, 0px);
+  }
 
-    .left {
-      gap: 10px;
-    }
+ 
+   
 
-    .logo-img {
-      width: 110px;
-      margin: 0 20px;
+    .catalog-btn {
+      margin-left: 20px;
     }
+    
+   
   }
  
   .sidebar-btn {
@@ -114,7 +127,6 @@ const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     color: white;
-
     background-color: #221F1F;
     
   }
@@ -151,16 +163,22 @@ const Wrapper = styled.div`
 .search-bar-container {
   display: flex;
   flex-direction: column;
+  /* background-color: green; */
   align-items: center;
-  min-width: 300px;
+  min-width: 200px;
   position: relative;
+
 }
 .store-logo {
   display: flex;
 }
 
+@media (max-width: 790px) {
+  .catalog-text {
+    display: none;
+  }
 
-
+}
 `;
 
 export default function Navbar() {
@@ -208,7 +226,7 @@ return (
                                          {/*  --------------------------   C    A    T    A     L     O      G   --------------------------   */}
             <div className="catalog"> 
                 <button className="catalog-btn" onClick={(e)=>{setIsCatalogOpen(!isCatalogOpen), e.stopPropagation();}}>
-                  <TbCategory2 style={{ fontSize: "25px" }} /> <p style={{ fontSize: "16px" }}>Catalog</p>
+                  <TbCategory2 style={{ fontSize: "25px" }} /> <p className="catalog-text" style={{ fontSize: "16px" }}>Catalog</p>
                 </button>
                 {isCatalogOpen && <CatalogHeader catalog={navRight} setIsCatalogOpen={setIsCatalogOpen} isCatalogOpen={isCatalogOpen} />}
             </div>

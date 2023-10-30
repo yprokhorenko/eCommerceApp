@@ -6,78 +6,92 @@ import { HiX } from "react-icons/hi";
 import { useSelector } from "react-redux";
  
 const Wrapper = styled.div`
- display: flex;
-.input-wrapper {
-  width: 100%;
-  height: 40px;
-  border: none;
-  border-top-left-radius: 6px;
-  border-bottom-left-radius: ${props =>
-     props.inputEmpty ? "6px" : "0"};
-  
-  padding: 0 15px;
-  /* box-shadow: 0px 0px 3px #808080; */
-  background-color: white;
   display: flex;
-  align-items: center;
-}
+  width: 600px;
 
-input {
-  background-color: transparent;
-  border: none;
-  height: 100%;
-  font-size: 1rem;
-  width: 100%;
-  margin-left: 7px;
-  width: 550px;
+  @media (max-width: 1000px) {
+    width: 380px;
+    .search-btn {
+      font-size: 14px !important;
+    }
+    .clear-btn {
+      right: 70px !important;
+    }
+  }
+  @media (max-width: 713px) {
+    width: 280px;
+    .clear-btn {
+      right: 55px !important;
+    }
+  }
 
-}
+  .input-wrapper {
+    width: 85%;
+    height: 40px;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: ${(props) => (props.inputEmpty ? "6px" : "0")};
 
-input:focus {
-  outline: none;
-}
+    padding: 0 15px;
+    /* box-shadow: 0px 0px 3px #808080; */
+    background-color: white;
+    display: flex;
+    align-items: center;
+  }
 
-#search-icon {
-  color: #4E4C4C;
-  font-size: 14px;
-}
+  input {
+    background-color: transparent;
+    border: none;
+    font-size: 1rem;
+    margin-left: 7px;
+    width: 85%;
+  }
 
-.clear-btn {
- border: none;
- font-size: 15px;
- background-color: transparent;
- cursor: pointer;
- position: absolute;
- right: 100px;
- display: flex;
- align-items: center;
- color: #3E77AA;
-}
+  input:focus {
+    outline: none;
+  }
 
-.search-btn {
+  #search-icon {
+    color: #4e4c4c;
+    font-size: 14px;
+  }
+
+  .clear-btn {
+    border: none;
+    font-size: 15px;
+    background-color: transparent;
+    cursor: pointer;
+    position: absolute;
+    right: 100px;
+    display: flex;
+    align-items: center;
+    color: #3e77aa;
+  }
+
+  .search-btn {
     display: flex;
     flex-direction: row;
     font-size: 16px;
-    width: 90px;
+    width: 15%;
     border: none;
     align-items: center;
     color: white;
-    background-color: #00A046;
+    background-color: #00a046;
     justify-content: center;
     border-bottom-right-radius: 6px;
     border-top-right-radius: 6px;
     cursor: pointer;
     transition: 0.2s ease all;
     &:hover {
-        background-color: #00b950;
-        transition: 0.2s ease all;
+      background-color: #00b950;
+      transition: 0.2s ease all;
     }
     &:active {
-        background-color: #00A046;
-        transition: 0.2s ease all;
+      background-color: #00a046;
+      transition: 0.2s ease all;
     }
-}
-`
+  }
+`;
 
 const SearchBar = ({setResults,setShowList, input, setInput}) => {
       const [hasResults, setHasResults] = useState(false); 

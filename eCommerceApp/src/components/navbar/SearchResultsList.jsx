@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   .results-list {
     box-shadow: 0px 25px 9px -26px rgba(0, 0, 0, 0.1);
     left: 0;
-    width: 88.5%;
+    width: 85%;
     background-color: white;
     display: flex;
     flex-direction: column;
@@ -51,6 +51,7 @@ const Wrapper = styled.div`
     gap: 20px;
     cursor: pointer;
   }
+
 `;
 
 const SearchResultsList = ({ results, setShowList, setInput }) => {
