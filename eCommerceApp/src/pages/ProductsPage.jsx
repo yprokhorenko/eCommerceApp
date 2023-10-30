@@ -13,6 +13,7 @@ const Wrapper = styled.div`
     gap: 20px;
     flex-direction: row;
     margin: 30px auto 0;
+    width: 1150px;
   }
   .filtersSection {
     width: 230px;

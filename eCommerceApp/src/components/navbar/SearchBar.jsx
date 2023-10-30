@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import axios from "axios";
 import styled from "styled-components";
 import { HiX } from "react-icons/hi";
+import { useSelector } from "react-redux";
  
 const Wrapper = styled.div`
  display: flex;
@@ -80,7 +81,27 @@ input:focus {
 
 const SearchBar = ({setResults,setShowList, input, setInput}) => {
       const [hasResults, setHasResults] = useState(false); 
-    
+      const products = useSelector((state)=> state.products.products)
+
+
+      const fetchData = (value) => {
+        if (!products) return; 
+        const results = products.slice(0,10).filter((product) => {
+          const name = product.name;
+          return (
+            value &&
+            name &&
+            name.toLowerCase().includes(value.toLowerCase())
+          );
+        });
+        setResults(results);
+        setHasResults(results.length > 0);
+
+      };
+
+   
+
+
       const handleChange = (value) => {
         setShowList(true)
         const trimmedValue = value.trim(); 
