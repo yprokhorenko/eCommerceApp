@@ -79,6 +79,42 @@ const Wrapper = styled.section`
         }
       }
 
+      @media (max-width: 800px) {
+        .about p {
+          font-size: 12px !important;
+        }
+        .contact p {
+          font-size: 12px !important;
+        }
+      }
+      @media (max-width: 600px) {
+        .footer-container {
+        }
+        .upper {
+          width: 50% !important;
+          justify-content: center !important;
+          margin: 0 auto !important;
+        }
+
+        .about,
+        .contact {
+          flex: initial !important;
+          max-width: none !important; 
+          margin-right: 0 !important; 
+        }
+        .categories,
+        .links {
+          flex: 1;
+        }
+        .lower {
+          margin-top: 35px;
+          justify-content: center !important;
+        }
+        .reserved {
+          font-size: 12px;
+        }
+      }
+
       .lower {
         display: flex;
         justify-content: space-between;
@@ -151,7 +187,7 @@ export default function Footer() {
                   style={{ width: "120px" }}
                 />
               </div>
-              <p>@Copyright 2023. All rights reserved.</p>
+              <p className="reserved">@Copyright 2023. All rights reserved.</p>
             </div>
             <div className="payments">
               <div className="payments-img">
