@@ -65,23 +65,23 @@ const Categories = () => {
         <div className="col">
           <div className="row">
             <img
-              src="https://images.pexels.com/photos/818992/pexels-photo-818992.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="https://www.kingliving.com.au/pub/media/wysiwyg/B-01-King-Boulevard-Hero.jpg"
               alt=""
             />
             <button>
               <NavLink className="link" to="/products/1">
-                Sale
+                Living Room
               </NavLink>
             </button>
           </div>
           <div className="row">
             <img
-              src="https://images.pexels.com/photos/2036646/pexels-photo-2036646.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="https://i.pinimg.com/564x/75/74/76/757476e8aa83427075f68289f095d6cb.jpg"
               alt=""
             />
             <button>
               <NavLink to="/products/1" className="link">
-                Women
+                Dining
               </NavLink>
             </button>
           </div>
@@ -90,12 +90,12 @@ const Categories = () => {
           <div className="row">
             {" "}
             <img
-              src="https://images.pexels.com/photos/1813947/pexels-photo-1813947.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="https://www.bhg.com/thmb/FrTvU0Zr9qb5hpLoRFwdr0tVbyg=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/bedroom-collection-artwork-4FmLeEFtKwO87N4LG-N1Jv-53670737d5f64fa0845d90cb3a28393d.jpg"
               alt=""
             />
             <button>
               <NavLink to="/products/1" className="link">
-                New Season
+                Bedroom
               </NavLink>
             </button>
           </div>
@@ -105,12 +105,12 @@ const Categories = () => {
             <div className="col">
               <div className="row">
                 <img
-                  src="https://images.pexels.com/photos/1192609/pexels-photo-1192609.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  src="https://cdn-bnokp.nitrocdn.com/QNoeDwCprhACHQcnEmHgXDhDpbEOlRHH/assets/images/optimized/rev-0c79eba/www.decorilla.com/online-decorating/wp-content/uploads/2023/05/Beautiful-interior-design-for-an-office-space.jpg"
                   alt=""
                 />
                 <button>
                   <NavLink to="/products/1" className="link">
-                    Men
+                    Office
                   </NavLink>
                 </button>
               </div>
@@ -119,12 +119,12 @@ const Categories = () => {
               <div className="row">
                 {" "}
                 <img
-                  src="https://images.pexels.com/photos/2703202/pexels-photo-2703202.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                  src="https://hips.hearstapps.com/hmg-prod/images/2-1673453547.jpg?crop=0.670xw:1.00xh;0.123xw,0&resize=1200:*"
                   alt=""
                 />
                 <button>
                   <NavLink to="/products/1" className="link">
-                    Accessories
+                    Kitchen
                   </NavLink>
                 </button>
               </div>
@@ -132,12 +132,12 @@ const Categories = () => {
           </div>
           <div className="row">
             <img
-              src="https://images.pexels.com/photos/1159670/pexels-photo-1159670.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              src="https://blog.shipperhq.com/wp-content/uploads/2020/08/AdobeStock_257902750.jpg"
               alt=""
             />
             <button>
               <NavLink to="/products/1" className="link">
-                Shoes
+                Free Shipping
               </NavLink>
             </button>
           </div>
