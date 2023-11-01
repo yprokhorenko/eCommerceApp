@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUniqueValues } from "../../constants";
 import { updateFilters } from "../../redux/productsSlice";
 import {FaCheck} from 'react-icons/fa'
+import {capitalizeWords} from "../../constants.js"
 
 const Wrapper = styled.div`
   .container {
@@ -85,7 +86,7 @@ const Filters = ({ clearFilter, updateFiltersComponent }) => {
           <input
             type="text"
             name="text"
-            placeholder="search"
+            placeholder="Search"
             className="text-input"
             value={text}
             onChange={updateFiltersComponent}

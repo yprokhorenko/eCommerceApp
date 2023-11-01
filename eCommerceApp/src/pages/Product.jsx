@@ -15,6 +15,7 @@ import BreadcrumbTrail from "../components/BreadcrumbTrail"
 import ProductImages from "../components/ProductImages";
 import Stars from "../components/Stars";
 import AddToCartSection from "../components/product/AddToCartSection";
+import {capitalizeWords} from "../constants.js"
 
 export default function Product() {
   const dispatch = useDispatch();
@@ -59,28 +60,30 @@ export default function Product() {
   return (
     <div className="product">
       <div className="left">
-      <ProductImages images={product.images} />
+        <ProductImages images={product.images} />
       </div>
-         
+
       <div className="right">
         <BreadcrumbTrail title={product.name} product={product} />
         <h2 className="card-title">
-            {product.name
-              .split(" ")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ")}
-          </h2>
+          {capitalizeWords(product.name)}
+        </h2>
         <Stars stars={product.stars} reviews={product.reviews} />
-        <span className="price">${product?.price/100}</span>
+        <span className="price">${product?.price / 100}</span>
         <p>{product?.description}</p>
 
         <div className="left">
-  {product && product.images && (
-    <AddToCartSection handleAddToCart={handleAddToCart} checkIsAddedToCart={checkIsAddedToCart} product={product} setAmount={setAmount} amount={amount} />
-  )}
-</div>
-        
-        
+          {product && product.images && (
+            <AddToCartSection
+              handleAddToCart={handleAddToCart}
+              checkIsAddedToCart={checkIsAddedToCart}
+              product={product}
+              setAmount={setAmount}
+              amount={amount}
+            />
+          )}
+        </div>
+
         <div className="links">
           <div className="item">
             <MdFavoriteBorder /> ADD TO WISH LIST
@@ -89,19 +92,19 @@ export default function Product() {
             <MdBalance /> ADD TO COMPARE
           </div>
         </div>
-              <div className="info">
-                <span>Vendor: Polo</span>
-                <span>Product Type: T-Shirt</span>
-                <span>Tag: T-Shirt, Women, Top</span>
-              </div>
-              <hr />
-              <div className="info">
-                <span>DESCRIPTION</span>
-                <hr />
-                <span>ADDITIONAL INFORMATION</span>
-                <hr />
-                <span>FAQ</span>
-              </div>
+        <div className="info">
+          <span>Vendor: Polo</span>
+          <span>Product Type: T-Shirt</span>
+          <span>Tag: T-Shirt, Women, Top</span>
+        </div>
+        <hr />
+        <div className="info">
+          <span>DESCRIPTION</span>
+          <hr />
+          <span>ADDITIONAL INFORMATION</span>
+          <hr />
+          <span>FAQ</span>
+        </div>
       </div>
     </div>
   );

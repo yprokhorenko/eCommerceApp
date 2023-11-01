@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {capitalizeWords} from "../constants.js"
 
 const Wrapper = styled.section`
 .container {
@@ -25,9 +26,11 @@ const BreadcrumbTrail = ({ title, product }) => {
     <Wrapper>
       <div className="container">
         <h3 className="links">
-          <Link to="/">Home /  </Link>
-          {product && <Link to="/products"> / Products / </Link>}
-          <span className="activeBread">{title}</span>
+          <Link to="/"> Home / </Link>
+          {product && <Link to="/products">Products / </Link>}
+          <span className="activeBread">
+            {capitalizeWords(title)}
+          </span>
         </h3>
       </div>
     </Wrapper>

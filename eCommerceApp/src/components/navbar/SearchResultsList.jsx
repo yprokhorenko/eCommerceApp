@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 // import { useEffect } from "react";
 // import { useState } from "react";
+import {capitalizeWords} from "../../constants.js"
 
 const Wrapper = styled.div`
   .search-result {
@@ -76,12 +77,7 @@ const SearchResultsList = ({ results, setShowList, setInput }) => {
                 <img className="searchItem-img" src={image} alt="" />
               </div>
               <div className="searchTitlePrice">
-                <h5>
-                  {name
-                    .split(" ")
-                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                    .join(" ")}
-                </h5>
+                <h5>{capitalizeWords(name)}</h5>
                 <span>${price / 100}</span>
               </div>
             </NavLink>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import {HiCheckCircle} from "react-icons/hi"
 import { setIsCartOpen} from "../redux/cartSlice";
+import {capitalizeWords} from "../constants.js"
 
 
 const Wrapper = styled.div`
@@ -148,10 +149,7 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
             <img src={item.image} alt="" className="image-sec" />
           </div>
           <h3 className="card-title">
-            {item.name
-              .split(" ")
-              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-              .join(" ")}
+            {capitalizeWords(item.name)}
           </h3>
         </NavLink>
         <div className="card-price">
