@@ -76,7 +76,12 @@ const SearchResultsList = ({ results, setShowList, setInput }) => {
                 <img className="searchItem-img" src={image} alt="" />
               </div>
               <div className="searchTitlePrice">
-                <span>{name}</span>
+                <h5>
+                  {name
+                    .split(" ")
+                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                    .join(" ")}
+                </h5>
                 <span>${price / 100}</span>
               </div>
             </NavLink>

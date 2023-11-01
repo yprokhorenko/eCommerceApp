@@ -64,7 +64,12 @@ export default function Product() {
          
       <div className="right">
         <BreadcrumbTrail title={product.name} product={product} />
-        <h1>{product?.name}</h1>
+        <h2 className="card-title">
+            {product.name
+              .split(" ")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
+          </h2>
         <Stars stars={product.stars} reviews={product.reviews} />
         <span className="price">${product?.price/100}</span>
         <p>{product?.description}</p>

@@ -136,30 +136,37 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
 
 
   return (
-      <Wrapper>
-        
-         <div className="card">
-           <NavLink to={`/product/${item.id}`} className="card_link" >
-                <div className="card_img">
-                  {item?.shipping && <span className="new-season">Free Shipping</span>}
-                  
-                  <img src={item.image} alt="" className="image-main" />
-                  <img src={item.image} alt="" className="image-sec" />
-                </div>
-                <h3 className="card-title">{item.name}</h3>
-            </NavLink >
-            <div className="card-price">
-              <div className="">
-                  <span className="old_price">{item.oldPrice ? `$${item.oldPrice}` : null}</span>
-                  <span className="price">${item.price/100}</span>
-              </div>
-              <div className="buy-icon" onClick={()=> handleAddToCart(item)}> 
-              <MdOutlineShoppingCart/>
-              
-              {isItemInCart && <HiCheckCircle className="checked-icon"/> }   </div>
-            </div>
-          </div> 
-        
-      </Wrapper>
-  )
+    <Wrapper>
+      <div className="card">
+        <NavLink to={`/product/${item.id}`} className="card_link">
+          <div className="card_img">
+            {item?.shipping && (
+              <span className="new-season">Free Shipping</span>
+            )}
+
+            <img src={item.image} alt="" className="image-main" />
+            <img src={item.image} alt="" className="image-sec" />
+          </div>
+          <h3 className="card-title">
+            {item.name
+              .split(" ")
+              .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+              .join(" ")}
+          </h3>
+        </NavLink>
+        <div className="card-price">
+          <div className="">
+            <span className="old_price">
+              {item.oldPrice ? `$${item.oldPrice}` : null}
+            </span>
+            <span className="price">${item.price / 100}</span>
+          </div>
+          <div className="buy-icon" onClick={() => handleAddToCart(item)}>
+            <MdOutlineShoppingCart />
+            {isItemInCart && <HiCheckCircle className="checked-icon" />}{" "}
+          </div>
+        </div>
+      </div>
+    </Wrapper>
+  );
 }
