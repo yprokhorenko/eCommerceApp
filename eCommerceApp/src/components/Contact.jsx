@@ -9,7 +9,6 @@ const Wrapper = styled.section`
     color: white;
     display: flex;
     justify-content: center;
-    height: 65px;
   }
 
   .contact-container {
@@ -26,7 +25,7 @@ const Wrapper = styled.section`
     border: none;
     border-radius: 5px 0 0 5px;
     outline: none;
-    width: 300px;
+    width: 80%;
   }
 
   button {
@@ -47,16 +46,38 @@ const Wrapper = styled.section`
   .mail {
     display: flex;
     flex-wrap: nowrap;
+    width: 450px;
+    height: 35px;
   }
 
   .contact-title {
     text-transform: uppercase;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   .mail-label {
     margin: 0 20px;
     display: flex;
     align-items: center;
+  }
+
+  @media (max-width: 1085px) {
+    .mail {
+      width: 300px;
+    }
+  }
+  @media (max-width: 870px) {
+    .mail {
+      width: 240px;
+    }
+    .contact-title {
+      font-size: 11px;
+    }
+  }
+  @media (max-width: 630px) {
+    .contact-container {
+      flex-wrap: wrap !important;
+      justify-content: center;
+    }
   }
 `;
 
@@ -85,7 +106,6 @@ export default function Contact() {
           <div className="contact-title">Be in touch with us:</div>
 
           <form onSubmit={handleSubmit} className="mail">
-            {/* <label htmlFor="email" className="mail-label">Email Address</label> */}
             <input id="email" type="email" name="email"  placeholder="Your Email"/>
             <button type="submit" disabled={state.submitting}>Submit</button>
             <ValidationError className="mail-label" prefix="Email" field="email" errors={state.errors} />
