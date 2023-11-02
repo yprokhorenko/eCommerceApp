@@ -8,16 +8,17 @@ const Wrapper = styled.section`
   margin-top: 50px;
 }
 
-.links {
+.activeBread {
   color: #00A046;
-  font-size: 20px;
+
+}
+
+.links {
+  color: #333;
   font-weight: 500;
   letter-spacing: 3px ;
 }
 
-.activeBread {
-  color: #333;
-}
 
 `;
 

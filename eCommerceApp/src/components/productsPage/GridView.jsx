@@ -4,12 +4,26 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   .container {
-  /* border: 2px solid green; */
-  display: flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 60px;
-    justify-content: flex-start ;
+    justify-content: start;
+    /* background-color: red; */
+  }
+  .container > div {
+    margin: 0 30px;
+  }
+
+  @media (max-width: 1200px) {
+    .container {
+      margin: 0 40px;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .container {
+      justify-content: center;
+    }
   }
 `;
 
@@ -18,7 +32,7 @@ const GridView = ({ products }) => {
     <Wrapper>
       <div className="container">
         {products.map((product) => {
-          return <Card item={product} key={product.id} />;
+          return <Card item={product} key={product.id}  />;
         })}
       </div>
     </Wrapper>

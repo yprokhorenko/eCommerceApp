@@ -60,6 +60,9 @@ export const productsSlice = createSlice({
     updateSort: (state, action) => {
       state.sort = action.payload;
     },
+    removeText: (state, action) => {
+      state.filters.text = state.filters.text = "";
+    },
     startSort: (state, action) => {
       const { sort, filtered_products } = state;
       let tempProducts = [...filtered_products];
@@ -185,6 +188,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { updateSort, startSort,updateFilters,filterProducts,clearFilters } = productsSlice.actions;
+export const { updateSort, startSort,updateFilters,filterProducts,clearFilters, removeText } = productsSlice.actions;
 
 export default productsSlice.reducer;

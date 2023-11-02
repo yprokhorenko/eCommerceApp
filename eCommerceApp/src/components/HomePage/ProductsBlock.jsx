@@ -37,7 +37,7 @@ const Wrapper = styled.section`
 
   @media (max-width:1225px) {
     .bottom  {
-      justify-content: center;
+      justify-content: center !important;
     }
   }
 

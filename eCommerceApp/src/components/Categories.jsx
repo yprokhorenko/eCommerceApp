@@ -65,7 +65,7 @@ const Categories = () => {
         <div className="col">
           <div className="row">
             <img
-              src="https://www.kingliving.com.au/pub/media/wysiwyg/B-01-King-Boulevard-Hero.jpg"
+              src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cb2pm21-dig-coffee-tables-hero-1-1616645273.jpg"
               alt=""
             />
             <button>
@@ -132,7 +132,7 @@ const Categories = () => {
           </div>
           <div className="row">
             <img
-              src="https://blog.shipperhq.com/wp-content/uploads/2020/08/AdobeStock_257902750.jpg"
+              src="https://www.kingliving.com.au/pub/media/wysiwyg/B-01-King-Boulevard-Hero.jpg"
               alt=""
             />
             <button>

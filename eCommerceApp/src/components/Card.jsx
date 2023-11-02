@@ -14,7 +14,7 @@ import {capitalizeWords} from "../constants.js"
 
 const Wrapper = styled.div`
   .card {
-    width: 250px;
+    width: 230px;
     display: flex;
     flex-direction: column;
     gap: 10;
@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
 .card_img {
     position: relative;
-    height: 350px;
+    height: 300px;
     width: 100%;
     overflow: hidden;
     border-radius: 3px;

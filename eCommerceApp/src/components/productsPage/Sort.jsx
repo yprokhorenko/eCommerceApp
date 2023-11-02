@@ -6,6 +6,9 @@ const Wrapper = styled.div`
     padding: 15px;
     display: flex;
     justify-content: space-between;
+    gap: 15px;
+    align-items: center;
+    
   }
   .form {
     display: flex;
@@ -14,14 +17,20 @@ const Wrapper = styled.div`
     cursor: pointer;
   }
   .sort-input {
-    /* border: none; */
-    outline: 0.5px solic silver;
+    border: none;
+    outline: 0.5px solid silver;
     padding: 3px 6px;
+    border-radius: 3px;
     font-size: 16px;
     padding-bottom: 2px;
     cursor: pointer;
   }
-  
+
+  .productsAmount {
+    align-self: flex-end;
+  }
+
+
 `;
 
 
@@ -35,7 +44,7 @@ const Sort = ({ products, handleUpdateSort, sort }) => {
         <p className="productsAmount">{products.length} Products Found</p>
         <div className="">
           <form action="" className="form">
-            <label htmlFor="sort">sort by</label>
+            <label htmlFor="sort">Sort by</label>
             <select name="sort" id="sort" className="sort-input" onChange={handleUpdateSort} value={sort}>
               <option value="price-lowest">Price (Lowest)</option>
               <option value="price-highest">Price (Highest)</option>

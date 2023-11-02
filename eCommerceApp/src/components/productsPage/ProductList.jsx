@@ -4,7 +4,9 @@ import ListView from "./ListView";
 
 const ProductList = ({ products }) => {
   if (products < 1) {
-    return <p className="no-products">Sorry, there's no products!</p>;
+    return <div style={{width: "100%", display: "flex", justifyContent: "center"}}>
+      <p >Sorry, there's no products!</p>
+    </div>
   }
 
   return (

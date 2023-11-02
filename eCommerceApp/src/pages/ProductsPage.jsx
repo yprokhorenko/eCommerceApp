@@ -9,9 +9,21 @@ import { useEffect } from "react";
 import Loading from "../components/Loading";
 
 const Wrapper = styled.div`
-   .trail {
-    margin-left: 250px;
-   }
+  .trail {
+    margin-left: 265px;
+    margin-bottom: -15px;
+  }
+  @media (max-width: 1199px) {
+    .trail {
+      margin-left: 255px;
+    }
+  }
+  @media (max-width: 970px) {
+    .trail {
+      margin-left: 189px;
+    }
+  }
+
   .wrapper {
     display: flex;
     gap: 20px;
@@ -20,21 +32,39 @@ const Wrapper = styled.div`
     width: 1150px;
   }
   .filtersSection {
-    width: 230px;
-    border: 2px solid grey;
+    width: 250px;
+    border: 0.5px solid #33333322;
+    border-radius: 5px;
   }
   .secondCol {
-    width: 900px;
-    border: 2px solid grey;
     display: flex;
+    width: 900px;
     flex-direction: column;
-    justify-content: center;
+    border: 0.5px solid #33333322;
+    border-radius: 5px;
+    /* background-color: green; */
   }
 
-  @media (max-width: 1199px) {
+  @media (max-width: 1200px) {
+    .wrapper {
+      width: 950px;
+    }
     .secondCol {
-      width: 100%;
-      padding-left: 100px;
+      width: 750px;
+    }
+  }
+
+  @media (max-width: 970px) {
+    .secondCol {
+      width: 450px;
+    }
+    .wrapper {
+      width: 600px;
+      display: flex;
+      justify-content: center !important;
+    }
+    .filtersSection {
+      width: 180px;
     }
   }
 `;
@@ -97,7 +127,6 @@ const ProductsPage = () => {
     <Wrapper>
      <div className="trail">
      <BreadcrumbTrail title="Products" />
-
      </div>
       <div className="wrapper">
         <div className="filtersSection">
@@ -106,12 +135,10 @@ const ProductsPage = () => {
         
         <div className="secondCol">
           <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
-
           <div className="list">
-            <ProductList products={products} />
+            <ProductList products={products}/>
           </div>
         </div>
-        ;
       </div>
     </Wrapper>
   );
