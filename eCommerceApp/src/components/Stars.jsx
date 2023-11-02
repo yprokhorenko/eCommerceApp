@@ -3,21 +3,26 @@ import styled from 'styled-components'
 import {BsStarFill, BsStar, BsStarHalf} from 'react-icons/bs';
 
 const Wrapper = styled.div`
-    .container {
-       display: flex;
-       gap: 20px;
-       align-items: center;
-    }
-    .stars {
-        color: orange;
-        font-size: 14px;
-        cursor: pointer;
-    }
-    .reviews {
-        font-size: 13px !important;
-        cursor: pointer;
-    }
-`
+  .container {
+    width: 240px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 7px 0;
+  }
+  .stars {
+    color: orange;
+    font-size: 14px;
+    cursor: pointer;
+    width: 40%;
+  }
+  .reviews {
+    font-size: 11px !important;
+    cursor: pointer;
+    width: 60%;
+    color: #3339;
+  }
+`;
 
 const Stars = ({stars, reviews}) => {
     const tempStars = Array.from({length: 5}, (_, index) => {
@@ -31,7 +36,7 @@ const Stars = ({stars, reviews}) => {
     <Wrapper>
         <div className="container">
             <div className="stars"> {tempStars}</div>
-            <p className="reviews">({reviews} customer reviews)</p>
+            <div className="reviews">({reviews} customer reviews)</div>
         </div>
     </Wrapper>
   )

@@ -7,15 +7,29 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 10px;
     margin-bottom: 30px;
+    color: #333333ca;
+    width: 95px;
+    height: 25px;
+
+
 
     button {
-      width: 50px;
-      height: 50px;
+      width: 25px;
+      height: 25px;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
       border: none;
+      border-radius: 4px;
+      color: #333333ca;
+      transition: ease all 0.2s;
+
+
+      &:active {
+        background-color: #33333360;
+        scale: 1.2;
+      }
     }
   }
 `;

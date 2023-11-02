@@ -19,6 +19,12 @@ const Wrapper = styled.section`
   letter-spacing: 3px ;
 }
 
+@media (max-width: 930px) {
+  .container {
+  margin-top: 0px;
+}
+}
+
 
 `;
 

@@ -10,6 +10,7 @@ import { useState } from "react";
 import {HiCheckCircle} from "react-icons/hi"
 import { setIsCartOpen} from "../redux/cartSlice";
 import {capitalizeWords} from "../constants.js"
+import Stars from "./Stars";
 
 
 const Wrapper = styled.div`

@@ -5,62 +5,75 @@ import {FaCheck} from 'react-icons/fa'
 import AmountButtons from "../AmountButtons";
 
 const Wrapper = styled.div`
-    
-        .add {
-            width: 270px;
-            padding: 10px;
-            background-color: #2879fe;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
-            cursor: pointer;
-            border: none;
-            font-weight: 500;
-             
-            .add-btn-content {
-                display: flex;
-                gap: 10px;
-                font-size: 17px;
-            }
-           
-        }
-        .btn-success {
-            background-color: #00A046;
-        }
+  .firstTwo {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+  .add {
+    width: 140px;
+    padding: 10px;
+    height: 31px;
+    background-color: #085de6;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: 500;
+    opacity: 0.8;
+    &:active {
+      opacity: 1;
+    }
+    .add-btn-content {
+      display: flex;
+      gap: 10px;
+      font-size: 12px;
+    }
+  }
 
-        .colors {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            margin-bottom: 20px;
-        }
+  .btn-success {
+    background-color: #00a046;
+  }
 
-        .colorsButtons {
-            display: flex;
-            gap: 3px;
-        }
+  .colors {
+    display: flex;
+    gap: 15px;
+    height: 25px;
+    align-items: center;
+    margin-bottom: 20px;
+    margin: 0 20px;
+    span {
+      color: #333333ca;
+      font-size: 14px;
+    }
+  }
 
-        .colorBtn {
-            height: 20px;
-            width: 20px;
-            border: none;
-            border-radius: 9px;
-            opacity: 0.5;
-            cursor: pointer;
-        }
+  .colorsButtons {
+    display: flex;
+    gap: 4px;
+  }
 
-        .activeColorBtn {
-            opacity: 1;
-        }
+  .colorBtn {
+    height: 20px;
+    width: 20px;
+    border: none;
+    border-radius: 5px;
+    opacity: 0.5;
+    cursor: pointer;
+  }
 
-        .faCheckIcon {
-            font-size: 10px;
-            color: white;
-        }
+  .activeColorBtn {
+    opacity: 1;
+  }
 
-`
+  .faCheckIcon {
+    font-size: 10px;
+    color: white;
+  }
+`;
 
 const AddToCartSection = ({
   product,
@@ -70,36 +83,38 @@ const AddToCartSection = ({
 }) => {
 
     const [mainColor, setMainColor] = useState(product.colors[0]);
-    console.log("mainColor",mainColor)
    
    
             
     
 
-  return (
-    <Wrapper>
+  return ( 
+    <Wrapper >
+
+    <div className="firstTwo">
                                      {/* Amount buttons */}
-     <AmountButtons product={product} setAmount={setAmount} amount={amount}  />
-                                       {/* colors buttons */}
+      <AmountButtons product={product} setAmount={setAmount} amount={amount}  />
+                                        {/* colors buttons */}
 
-      <div className="colors">
-        <p>Colors:</p> 
-        <div className="colorsButtons">
-            {product.colors.map((color, index)=> {
-                return (
-                  <button
-                    key={index}
-                    className={`${mainColor === color? 'colorBtn activeColorBtn': 'colorBtn'}  `}
-                    style={{ background: color }}
-                    onClick= {()=> setMainColor(color)}
-                  >
-                    {mainColor === color ? <FaCheck className="faCheckIcon" /> : null }
-                  </button>
-                );
-            })}
+        <div className="colors">
+          <span>Colors:</span> 
+          <div className="colorsButtons">
+              {product.colors.map((color, index)=> {
+                  return (
+                    <button
+                      key={index}
+                      className={`${mainColor === color? 'colorBtn activeColorBtn': 'colorBtn'}  `}
+                      style={{ background: color }}
+                      onClick= {()=> setMainColor(color)}
+                    >
+                      {mainColor === color ? <FaCheck className="faCheckIcon" /> : null }
+                    </button>
+                  );
+              })}
+          </div>
         </div>
-      </div>
 
+      </div>
 
 
                                      {/* add to cart button */}
@@ -117,7 +132,7 @@ const AddToCartSection = ({
             </div>
           ) : (
             <div className="add-btn-content">
-              <HiOutlineShoppingCart /> <span>ADD TO CART</span>
+              <HiOutlineShoppingCart/> <span>ADD TO CART</span>
             </div>
           )}
         </button>

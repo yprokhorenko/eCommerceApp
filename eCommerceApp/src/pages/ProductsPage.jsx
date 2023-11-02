@@ -11,6 +11,7 @@ import Loading from "../components/Loading";
 const Wrapper = styled.div`
   .trail {
     margin-left: 265px;
+    margin-top: 50px;
     margin-bottom: -15px;
   }
   @media (max-width: 1199px) {
