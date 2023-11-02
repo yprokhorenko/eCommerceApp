@@ -15,13 +15,22 @@ const Wrapper = styled.section`
 
 .links {
   color: #333;
-  font-weight: 500;
-  letter-spacing: 3px ;
+  font-weight: 400;
+  letter-spacing: 1px ;
+  font-size: 16px;
+
 }
 
 @media (max-width: 930px) {
   .container {
   margin-top: 0px;
+}
+}
+@media (max-width: 1050px) {
+  .links {
+font-size: 14px;
+letter-spacing: 1px ;
+
 }
 }
 

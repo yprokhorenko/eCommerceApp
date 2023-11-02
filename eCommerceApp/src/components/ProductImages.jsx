@@ -1,12 +1,13 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import {FcNext,FcPrevious} from "react-icons/fc";
 
 const Wrapper = styled.div`
   .container {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
   }
   .gallery {
     display: flex;
@@ -35,40 +36,96 @@ const Wrapper = styled.div`
     outline: 1px solid #2879fe;
   }
 
+  .arrowButton {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    justify-content: center;
+    top: 40%;
+    transform: translateY(-50%);
+    background: #bbbbbbef;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+    cursor: pointer;
+    &:active {
+      background: #979797ed;
+      transition: all cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.2s;
+    }
+  }
+
+
+  .leftArrow {
+    left: 10px;
+  }
+
+  .rightArrow {
+    right: 10px;
+  }
+
   @media (max-width: 930px) {
     .container {
-       margin: 0 auto !important;
+      margin: 0 auto !important;
     }
     .mainImg {
       height: 350px;
-      width: 500px ;
+      width: 500px;
     }
   }
 `;
 
-const ProductImages = ({ images = [{ url: "" }] }) => {
-  const [main, setMain] = useState(images[0]);
-  console.log("images", images);
+const ProductImages = ({ images = [] }) => {
+  const [mainIndex, setMainIndex] = useState(0);
+
+  const handleNextImage = () => {
+    if (images.length === 0) return;
+
+    setMainIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const handlePrevImage = () => {
+    if (images.length === 0) return;
+
+    setMainIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <Wrapper>
       <div className="container">
-        <img className="mainImg" src={main.url} alt="" />
+        <img
+          className="mainImg"
+          src={images[mainIndex]?.url}
+          alt={images[mainIndex]?.filename}
+        />
         <div className="gallery">
-          {images.map((image, index) => {
-            return (
-              <img
-                className={`mini-img ${image.url === main.url ? "active" : ""}`}
-                src={image.url}
-                alt={image.filename}
-                key={index}
-                onClick={() => {
-                  setMain(images[index]);
-                }}
-              />
-            );
-          })}
+          {images.map((image, index) => (
+            <img
+              className={`mini-img ${index === mainIndex ? "active" : ""}`}
+              src={image.url}
+              alt={image.filename}
+              key={index}
+              onClick={() => setMainIndex(index)}
+            />
+          ))}
         </div>
+        {images.length > 0 && (
+          <>
+            <button className="arrowButton leftArrow" onClick={handlePrevImage}>
+            <FcPrevious/>
+            </button>
+            <button className="arrowButton rightArrow" onClick={handleNextImage}>
+            <FcNext/>
+            </button>
+          </>
+        )}
       </div>
     </Wrapper>
   );
