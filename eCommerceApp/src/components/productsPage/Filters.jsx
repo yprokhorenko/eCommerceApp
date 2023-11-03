@@ -4,6 +4,7 @@ import { getUniqueValues } from "../../constants";
 import { removeText, updateFilters } from "../../redux/productsSlice";
 import {FaCheck} from 'react-icons/fa'
 import {MdClose} from 'react-icons/md'
+
 // import {capitalizeWords} from "../../constants.js"
 
 const Wrapper = styled.div`

@@ -55,12 +55,13 @@ const AmountButtons = ({product,amount, setAmount}) => {
       return tempAmount;
     });
   };
+  console.log("product", product)
   return (
     <Wrapper>
       <div className="amount">
-        <button onClick={decrease}>-</button>
+        <button onClick={decrease} disabled={product.stock === 0}>-</button>
         {amount}
-        <button onClick={increase}>+</button>
+        <button onClick={increase} disabled={product.stock === 0}>+</button>
       </div>
     </Wrapper>
   );

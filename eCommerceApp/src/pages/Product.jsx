@@ -139,7 +139,7 @@ export default function Product() {
           name: product.name,
           description: product.description,
           price: product.price,
-          image: product.url,
+          image: product.images[0].url,
           amount,
         })
       );
@@ -151,7 +151,9 @@ export default function Product() {
   };
 
   if (productLoading) {
-    return <Loading />;
+    return <main style={{height: "100vh",paddingTop: "200px"}} >
+      <Loading />
+    </main>;
   }
 
 
