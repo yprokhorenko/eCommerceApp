@@ -60,6 +60,14 @@ export const productsSlice = createSlice({
     updateSort: (state, action) => {
       state.sort = action.payload;
     },
+    // updateProductStock: (state, action) => {
+    //   const { id, stock } = action.payload;
+    //   const productIndex = state.products.findIndex(product => product.id === id);
+      
+    //   if (productIndex !== -1) {
+    //     state.products[productIndex] = { ...state.products[productIndex], stock };
+    //   }
+    // },
     removeText: (state, action) => {
       state.filters.text = state.filters.text = "";
     },
@@ -188,6 +196,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { updateSort, startSort,updateFilters,filterProducts,clearFilters, removeText } = productsSlice.actions;
+export const { updateSort, startSort,updateFilters,filterProducts,clearFilters, removeText,updateProductStock } = productsSlice.actions;
 
 export default productsSlice.reducer;

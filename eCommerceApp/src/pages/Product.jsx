@@ -112,11 +112,12 @@ const Wrapper = styled.div`
 export default function Product() {
   const dispatch = useDispatch();
   const id = useParams().id;
-  const product = useSelector((state) => state.products.product);
 
   useEffect(() => {
     dispatch(getSingleProduct(`${single_product_url}${id}`));
   }, [id]);
+  const product = useSelector((state) => state.products.product);
+  const [mainColor, setMainColor] = useState(null);
 
   const productLoading = useSelector((state) => state.products.productLoading);
 
@@ -124,22 +125,32 @@ export default function Product() {
 
   const cartItems = useSelector((state) => state.cart.products);
   const checkIsAddedToCart = cartItems.some(
-    (cartItem) => cartItem.id === product.id
+    (cartItem) => cartItem.id === product.id+mainColor
   );
-  const isItemInCart = cartItems.some((cartItem) => cartItem.id === product.id);
+
+  useEffect(() => {
+    if (product && product.colors && product.colors.length > 0) {
+      setMainColor(product.colors[0]);
+    }
+  }, [product]);
+
+  const isItemInCart = cartItems.some((cartItem) => cartItem.id === product.id+mainColor);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
   const [amount, setAmount] = useState(1);
 
+
   const handleAddToCart = () => {
-    const existingProduct = cartItems.find((item) => item.id === product.id);
+    const existingProduct = cartItems.find((item) => item.id === product.id+mainColor);
     if (!existingProduct) {
       dispatch(
         addToCart({
-          id: product.id,
+          id: product.id+mainColor,
+          originalID: product.id,
           name: product.name,
           description: product.description,
           price: product.price,
           image: product.images[0].url,
+          mainColor: mainColor,
           amount,
         })
       );
@@ -149,6 +160,8 @@ export default function Product() {
       dispatch(setIsCartOpen(!isCartOpen));
     }
   };
+
+
 
   if (productLoading) {
     return <main style={{height: "100vh",paddingTop: "200px"}} >
@@ -177,8 +190,10 @@ export default function Product() {
               handleAddToCart={handleAddToCart}
               checkIsAddedToCart={checkIsAddedToCart}
               product={product}
+              setMainColor={setMainColor}
               setAmount={setAmount}
               amount={amount}
+              mainColor={mainColor}
             />
           )}
         </div>

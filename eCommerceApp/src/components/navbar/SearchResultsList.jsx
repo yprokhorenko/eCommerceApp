@@ -56,16 +56,15 @@ const Wrapper = styled.div`
 `;
 
 const SearchResultsList = ({ results, setShowList, setInput }) => {
-  const handleChange = (e) => {
-    setShowList(false);
-    setInput("");
-  };
-
+    const handleChange = (e) => {
+      setShowList(false);
+      setInput("");
+    };
   return (
     <Wrapper>
       <div className="results-list">
-        {results.map((result, id) => {
-          const { name, price, image } = result;
+        {results.map((result) => {
+          const { name, price, image, id } = result;
           return (
             <NavLink
               to={`/product/${id}`}

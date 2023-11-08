@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     border: none;
     font-weight: 500;
-    opacity: 0.8;
+    opacity: 0.9;
     &:active {
       opacity: 1;
     }
@@ -61,7 +61,7 @@ const Wrapper = styled.div`
     width: 20px;
     border: none;
     border-radius: 5px;
-    opacity: 0.5;
+    opacity: 0.8;
     cursor: pointer;
   }
 
@@ -79,10 +79,9 @@ const AddToCartSection = ({
   product,
   handleAddToCart,
   checkIsAddedToCart,
-  setAmount, amount
+  setAmount, amount,setMainColor, mainColor
 }) => {
 
-    const [mainColor, setMainColor] = useState(product.colors[0]);
    
    
             
@@ -94,7 +93,7 @@ const AddToCartSection = ({
     <div className="firstTwo">
                                      {/* Amount buttons */}
       <AmountButtons product={product} setAmount={setAmount} amount={amount}  />
-                                        {/* colors buttons */}
+                                     {/* colors buttons */}
 
         <div className="colors">
           <span>Colors:</span> 

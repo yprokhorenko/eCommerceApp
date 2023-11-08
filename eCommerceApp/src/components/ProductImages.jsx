@@ -34,6 +34,7 @@ const Wrapper = styled.div`
 
   .active {
     outline: 1px solid #2879fe;
+    transform: scale(1.05);
   }
 
   .arrowButton {

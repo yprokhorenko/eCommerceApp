@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
 import {useState} from "react";
 import { increaseamount, decreaseamount } from "../redux/cartSlice";
+import { capitalizeWords } from "../constants";
 
 const Wrapper = styled.section`
       position: absolute;
@@ -37,8 +38,8 @@ const Wrapper = styled.section`
             gap: 10px;
 
             button {
-                width: 50px;
-                height: 50px;
+                width: 25px;
+                height: 25px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -164,9 +165,21 @@ const Wrapper = styled.section`
       cursor: pointer;
     }
 
-    
-
   }
+
+  .name-color {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  .product-color {
+      width: 15px;
+      height: 15px;
+      border-radius: 5px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+    }
   
 `;
 
@@ -204,12 +217,15 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
           <div className="cart_container">
             {products?.map((item) => (
               <div className="cart_item" key={item.id}>
-                <Link  Link to={`/product/${item.id}`} className="cart_main" onClick = {handleCloseCart}>
+                <Link  Link to={`/product/${item.originalID}`} className="cart_main" onClick = {handleCloseCart}>
                   <div className="cart_img">
                     <img src={item.image} alt="" className="cartImg_link" />
                   </div>
                   <div className="cart_info">
-                    <h4 className="cart_name">{item.name}</h4>
+                      <div className="name-color">
+                          <h4 className="cart_name">{capitalizeWords(item.name)}</h4>
+                          <button className="product-color" style={{backgroundColor: item.mainColor}}> </button>
+                      </div>
                     <p className="cart_desc">{item.description.substring(0, 50)}</p>
                     <p className="cart_price"> {item.amount} x ${item.price/100}</p>
                   </div>

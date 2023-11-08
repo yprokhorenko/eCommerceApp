@@ -55,7 +55,6 @@ const AmountButtons = ({product,amount, setAmount}) => {
       return tempAmount;
     });
   };
-  console.log("product", product)
   return (
     <Wrapper>
       <div className="amount">

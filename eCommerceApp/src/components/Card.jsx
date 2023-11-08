@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import styled from "styled-components";
 import {
   MdOutlineShoppingCart,
@@ -7,7 +7,7 @@ import { addToCart } from "../redux/cartSlice";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
-import {HiCheckCircle} from "react-icons/hi"
+import {BsArrowUpRightCircle} from "react-icons/bs"
 import { setIsCartOpen} from "../redux/cartSlice";
 import {capitalizeWords} from "../constants.js"
 import Stars from "./Stars";
@@ -21,6 +21,14 @@ const Wrapper = styled.div`
     gap: 10;
     margin-bottom: 50px;
 }
+
+   &:hover {
+    .toProduct-icon {
+      transition: all ease 0.5s;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+   }
 
 .card_img {
     position: relative;
@@ -51,9 +59,12 @@ const Wrapper = styled.div`
 }
 
 .card-price {
-    margin-top: 10px;
+    margin-top: 5px;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    
+    
     .old_price {
         color: #999;
         text-decoration: line-through;
@@ -64,7 +75,9 @@ const Wrapper = styled.div`
     .price {
         color: #333;
         font-weight: bold;
-        font-size: 20px;
+        text-align: start;
+        margin-bottom: 4px;
+        font-size: 15px;
     }
 }
 
@@ -90,7 +103,7 @@ const Wrapper = styled.div`
 }
 
 .buy-icon {
-  font-size: 23px;
+  font-size: 20px;
   color: #00A046;
   cursor: pointer;
   position: relative;
@@ -99,15 +112,29 @@ const Wrapper = styled.div`
   position: absolute;
   top: -7px;
   right: -9px;
-  font-size: 20px;
+  font-size: 16px;
+}
+
+.toProduct {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 26px;
+}
+
+.toProduct-icon {
+  font-size: 18px;
+  color: #00a046;
+  transition: all ease 0.5s;
 }
   
 `
 
 
 export default function Card({item}) {
-  // const products = useSelector((state) => state.products.products) 
-
+// const products = useSelector((state) => state.products.products) 
+           
    const [isAddedToCart, setIsAddedToCart] = useState(true);
    const [amount, setAmount] = useState(1);
    const id = useParams().id;
@@ -115,26 +142,27 @@ export default function Card({item}) {
    const cartItems = useSelector((state)=> state.cart.products )  
    const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
 
-
-const handleAddToCart = (product) => {
-  const existingProduct = cartItems.find((item) => item.id === product.id);
-  if (!existingProduct) {
-    dispatch(addToCart({ 
-      id: product.id,
-      name: product.name,
-      description: product.description,
-      price: product.price,
-      image: product.image,
-      amount: 1, 
-    }));
-  }
-  setIsAddedToCart(true);
-  if (isItemInCart && isAddedToCart) {
-      dispatch(setIsCartOpen(!isCartOpen));
-    }
-    } 
+        // const handleAddToCart = (product) => {
+        //   const existingProduct = cartItems.find((item) => item.id === product.id);
+        //   if (!existingProduct) {
+        //     dispatch(
+        //       addToCart({
+        //         id: product.id,
+        //         name: product.name,
+        //         description: product.description,
+        //         price: product.price,
+        //         image: product.image,
+        //         amount: 1,
+        //       })
+        //     );
+        //   }
+        //   setIsAddedToCart(true);
+        //   if (isItemInCart && isAddedToCart) {
+        //     dispatch(setIsCartOpen(!isCartOpen));
+        //   }
+        // }; 
  
-const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
+   const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
 
 
   return (
@@ -149,21 +177,23 @@ const isItemInCart = cartItems.some((cartItem) => cartItem.id === item.id);
             <img src={item.image} alt="" className="image-main" />
             <img src={item.image} alt="" className="image-sec" />
           </div>
-          <h3 className="card-title">
-            {capitalizeWords(item.name)}
-          </h3>
+          <h3 className="card-title">{capitalizeWords(item.name)}</h3>
         </NavLink>
         <div className="card-price">
-          <div className="">
-            <span className="old_price">
+          <div className="price-block">
+            {/* <span className="old_price">
               {item.oldPrice ? `$${item.oldPrice}` : null}
-            </span>
+            </span> */}
             <span className="price">${item.price / 100}</span>
           </div>
-          <div className="buy-icon" onClick={() => handleAddToCart(item)}>
+
+          <Link to={`/product/${item.id}`} className="toProduct">
+            <BsArrowUpRightCircle className="toProduct-icon" />
+          </Link>
+          {/* <div className="buy-icon" onClick={() => handleAddToCart(item)}>
             <MdOutlineShoppingCart />
             {isItemInCart && <HiCheckCircle className="checked-icon" />}{" "}
-          </div>
+          </div> */}
         </div>
       </div>
     </Wrapper>

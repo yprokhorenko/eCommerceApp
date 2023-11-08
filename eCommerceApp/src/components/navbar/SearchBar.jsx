@@ -97,7 +97,6 @@ const SearchBar = ({setResults,setShowList, input, setInput}) => {
       const [hasResults, setHasResults] = useState(false); 
       const products = useSelector((state)=> state.products.products)
 
-
       const fetchData = (value) => {
         if (!products) return; 
         const results = products.slice(0,10).filter((product) => {
