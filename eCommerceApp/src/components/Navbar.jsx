@@ -54,8 +54,7 @@ const Wrapper = styled.div`
     align-items: center;
     gap: 30px;
     justify-content: center  ;
-        position: relative;
-
+    position: relative;
   }
 
   @media (max-width: 1200px) {
@@ -167,7 +166,6 @@ const Wrapper = styled.div`
   align-items: center;
   min-width: 200px;
   position: relative;
-
 }
 .store-logo {
   display: flex;
@@ -177,8 +175,25 @@ const Wrapper = styled.div`
   .catalog-text {
     display: none;
   }
-
+   .minDisplay {
+    display: none ;
+   }
+   .search-bar-container {
+   }
+   .store-logo {
+    margin-right: 20px;
+   }
+   .cart-icon {
+    margin-left: -50px;
+   }
 }
+@media (max-width: 500px) {
+  
+   .cart-icon {
+    margin-left: -38px;
+   }
+}
+
 `;
 
 export default function Navbar() {
@@ -224,7 +239,7 @@ return (
             </NavLink>
 
                                          {/*  --------------------------   C    A    T    A     L     O      G   --------------------------   */}
-            <div className="catalog"> 
+            <div className="catalog minDisplay"> 
                 <button className="catalog-btn" onClick={(e)=>{setIsCatalogOpen(!isCatalogOpen), e.stopPropagation();}}>
                   <TbCategory2 style={{ fontSize: "25px" }} /> <p className="catalog-text" style={{ fontSize: "16px" }}>Catalog</p>
                 </button>
@@ -242,10 +257,10 @@ return (
                 {/* <NavLink to="/search" className="search-icon icon">
                   <MdOutlineSearch />{" "}
                 </NavLink> */}
-                <NavLink to="/profile" className="profile-icon icon">
+                <NavLink to="/profile" className="profile-icon icon minDisplay">
                   <MdOutlinePermIdentity />
                 </NavLink>
-                <NavLink to="/favorite" className="favorite-icon icon">
+                <NavLink to="/favorite" className="favorite-icon icon minDisplay">
                   <MdOutlineFavoriteBorder />
                 </NavLink>
                 <NavLink onClick={() => dispatch(setIsCartOpen(!isCartOpen))} className="cart-icon icon">

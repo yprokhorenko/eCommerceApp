@@ -28,11 +28,12 @@ const Wrapper = styled.section`
 }
 @media (max-width: 1050px) {
   .links {
-font-size: 14px;
+font-size: 12px;
 letter-spacing: 1px ;
+gap: 8px !important;
+}
+}
 
-}
-}
 
 
 `;

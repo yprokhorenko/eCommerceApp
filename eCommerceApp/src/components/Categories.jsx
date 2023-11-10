@@ -6,7 +6,8 @@ const Wrapper = styled.section`
     display: flex;
     height: 80vh;
     gap: 10px;
-    margin: 10px;
+    /* margin: 10px; */
+    width: 100vw;
 
     .col {
       flex: 1;
@@ -56,6 +57,15 @@ const Wrapper = styled.section`
       }
     }
   }
+
+  @media (max-width:600px) {
+    .max500 {
+      display: none !important;
+    }
+    .col {
+      flex: 2 !important;
+    }
+  }
 `;
 
 const Categories = () => {
@@ -86,7 +96,7 @@ const Categories = () => {
             </button>
           </div>
         </div>
-        <div className="col">
+        <div className="col max500">
           <div className="row">
             {" "}
             <img
@@ -102,10 +112,10 @@ const Categories = () => {
         </div>
         <div className="col col-l">
           <div className="row">
-            <div className="col">
+            <div className="col max500">
               <div className="row">
                 <img
-                  src="https://cdn-bnokp.nitrocdn.com/QNoeDwCprhACHQcnEmHgXDhDpbEOlRHH/assets/images/optimized/rev-0c79eba/www.decorilla.com/online-decorating/wp-content/uploads/2023/05/Beautiful-interior-design-for-an-office-space.jpg"
+                  src="https://i.ibb.co/b7Z2MV0/Screenshot-222.png"
                   alt=""
                 />
                 <button>

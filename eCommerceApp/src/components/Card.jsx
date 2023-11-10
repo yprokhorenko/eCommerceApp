@@ -141,6 +141,7 @@ export default function Card({item}) {
    const dispatch = useDispatch();
    const cartItems = useSelector((state)=> state.cart.products )  
    const isCartOpen = useSelector((state) => state.cart.isCartOpen); 
+   const productStock = useSelector((state) => state.products.product.stock);
 
         // const handleAddToCart = (product) => {
         //   const existingProduct = cartItems.find((item) => item.id === product.id);

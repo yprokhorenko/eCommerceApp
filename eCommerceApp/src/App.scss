@@ -18,15 +18,32 @@
   flex-direction: column;
   // justify-content: center;
   margin: 0 auto;
+
 }
 
-// .main {
-//   height: 100vh;
-// }
+
 
 .wrapper-content {
   flex-grow: 1 ;
   max-width: 1200px;
   margin: 0 auto;
+  
 }
+
+@media (max-width: 614px) {
+  .main {
+     width:450px;
+     display: flex;
+     justify-content: center;
+  }
+}
+@media (max-width: 515px) {
+  .main {
+     width: 300px;
+     display: flex;
+     justify-content: center;
+  }
+}
+
+
 

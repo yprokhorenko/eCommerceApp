@@ -18,8 +18,8 @@ const Wrapper = styled.div`
       right: 70px !important;
     }
   }
-  @media (max-width: 713px) {
-    width: 280px;
+  @media (max-width: 500px) {
+    width: 250px;
     .clear-btn {
       right: 55px !important;
     }
@@ -31,7 +31,6 @@ const Wrapper = styled.div`
     border: none;
     border-top-left-radius: 6px;
     border-bottom-left-radius: ${(props) => (props.inputEmpty ? "6px" : "0")};
-
     padding: 0 15px;
     /* box-shadow: 0px 0px 3px #808080; */
     background-color: white;
@@ -90,7 +89,22 @@ const Wrapper = styled.div`
       background-color: #00a046;
       transition: 0.2s ease all;
     }
+
   }
+
+  @media (max-width: 790px) {
+   .minDisplay {
+     display: none ;
+   }
+   .input-wrapper {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: ${(props) => (props.inputEmpty ? "6px" : "0")};
+
+      height: 40px;
+      input {
+      }
+   }
+}
 `;
 
 const SearchBar = ({setResults,setShowList, input, setInput}) => {
@@ -136,7 +150,7 @@ const SearchBar = ({setResults,setShowList, input, setInput}) => {
                       handleChange("")} > <HiX /></button>}
 
                     </div>
-                    <button className="search-btn">Find</button>
+                    <button className="search-btn minDisplay">Find</button>
 
                   </Wrapper>
     );

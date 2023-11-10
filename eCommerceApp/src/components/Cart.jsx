@@ -188,7 +188,7 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.cart.products);
   const productStock = useSelector((state) => state.products.product.stock);
-
+    console.log("productStock",productStock)
   const totalPrice = () => {
     let total = 0;
     products.forEach((item) => {total += item.amount * item.price

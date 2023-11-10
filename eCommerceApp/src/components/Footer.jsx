@@ -16,6 +16,7 @@ const Wrapper = styled.section`
       max-width: 1200px;
       margin: 0 auto;
 
+
       .upper {
         display: flex;
         justify-content: space-between;
@@ -86,12 +87,14 @@ const Wrapper = styled.section`
         .contact p {
           font-size: 12px !important;
         }
+         .links h3 {
+          margin: 0 auto !important;
+         }
       }
       @media (max-width: 600px) {
         .footer-container {
         }
         .upper {
-          width: 50% !important;
           justify-content: center !important;
           margin: 0 auto !important;
         }
@@ -102,12 +105,13 @@ const Wrapper = styled.section`
           max-width: none !important; 
           margin-right: 0 !important; 
         }
+        
         .categories,
         .links {
-          flex: 1;
+          
         }
         .lower {
-          margin-top: 35px;
+          margin-top: 15px !important;
           justify-content: center !important;
         }
         .reserved {

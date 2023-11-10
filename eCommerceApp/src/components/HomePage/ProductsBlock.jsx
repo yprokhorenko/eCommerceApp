@@ -59,6 +59,12 @@ const Wrapper = styled.section`
     }
   }
 
+
+  @media (max-width: 500px) {
+  .productsContainer {
+    padding: 0 !important;
+  }}
+
 `;
 
 const ProductsBlock = ({ type, desc, products }) => {

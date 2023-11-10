@@ -3,11 +3,16 @@ import styled from "styled-components";
 import {FcNext,FcPrevious} from "react-icons/fc";
 
 const Wrapper = styled.div`
+    margin: 0 auto;
+  display: flex;
+  justify-content: center;
+
   .container {
     display: flex;
     flex-direction: column;
     gap: 10px;
     position: relative;
+    width: 500px;
   }
   .gallery {
     display: flex;
@@ -17,7 +22,7 @@ const Wrapper = styled.div`
   }
 
   .mainImg {
-    width: 500px;
+    width: 100%;
     height: 500px;
     object-fit: cover;
     border-radius: 4px;
@@ -74,9 +79,44 @@ const Wrapper = styled.div`
     }
     .mainImg {
       height: 350px;
-      width: 500px;
+      width: 100%;
     }
   }
+
+   @media (max-width: 614px) {
+   .container {
+    display: flex;
+    justify-content: center;
+    width: 400px;
+   }
+   .mainImg {
+    height: 260px;
+  
+  }
+
+    } 
+
+    @media (max-width: 515px) {
+   .container {
+    width: 300px;
+   }
+   .mainImg {
+    height: 220px;
+  }
+  .mini-img {
+    height: 45px;
+    width: 45px;
+  
+  }
+
+  .arrowButton  {
+    height: 30px;
+    width: 30px;
+  }
+
+
+    } 
+
 `;
 
 const ProductImages = ({ images = [] }) => {

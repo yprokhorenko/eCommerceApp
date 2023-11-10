@@ -17,12 +17,25 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   max-width: 1200px;
 
+  @media (max-width: 630px) {
+    .product>.left {
+      margin: 0 auto !important;     
+    }
+    .product {
+      padding: 10px 20px !important;
+
+    }
+  .right>hr {
+    display: none !important;
+  }
+  }
+
   @media (max-width: 930px) {
     .product {
       display: flex;
-      flex-direction: column;
+      flex-direction: column !important;
       margin: 0 auto;
-      width: 600px;
+      
     }
 
     .right {
@@ -30,6 +43,7 @@ const Wrapper = styled.div`
       padding: 20px;
     }
     .left {
+
     }
   }
 
@@ -38,6 +52,7 @@ const Wrapper = styled.div`
     display: flex;
     gap: 10px;
     margin-top: 60px;
+    
 
     .left {
       display: flex;
@@ -105,6 +120,14 @@ const Wrapper = styled.div`
       hr {
         border: 1px solid rgb(238, 237, 237);
       }
+    }
+  }
+
+  @media (max-width: 630px) {
+    .product {
+      display: flex ;
+      justify-content: center ;
+      
     }
   }
 `;
