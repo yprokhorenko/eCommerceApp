@@ -5,34 +5,22 @@ import { capitalizeWords } from "../constants.js";
 
 const Wrapper = styled.section`
   .container {
-    margin-top: 60px;
-    height: 45px;
-    
-    display: flex;
-    justify-content: start;
-    align-items: flex-start;
-    color: #333333b2;
+    margin: auto;
+    margin-top: 75px;
+    width: 100%;
+    color: #4e4c4c88;
+  }
+  .breadcrumbs .crumb a {
+    color: #4e4c4c88;
   }
 
   .activeBread {
     color: #00a046;
   }
 
-  @media (max-width: 930px) {
-  }
-
-  @media (max-width: 1050px) {
-  }
-
-  @media (max-width: 614px) {
-  }
-
   .breadcrumbs {
     display: flex;
     gap: 10px;
-    max-width: 1200px;
-    
-    margin: 20px auto;
   }
 
   .breadcrumbs > * {
@@ -41,16 +29,12 @@ const Wrapper = styled.section`
   }
 
   .breadcrumbs .crumb:after {
-    content: '/';
+    content: "/";
     margin-left: 10px;
   }
 
   .breadcrumbs .crumb:last-child:after {
     content: none;
-  }
-
-  .breadcrumbs .crumb a {
-    color: #333333d6;
   }
 
   .crumb {
@@ -78,7 +62,10 @@ const BreadcrumbTrail = () => {
     .map((crumb, index, array) => {
       const path = `/${array.slice(0, index + 1).join("/")}`;
       return (
-        <div className={`crumb ${path === location.pathname ? "active" : ""}`} key={crumb}>
+        <div
+          className={`crumb ${path === location.pathname ? "active" : ""}`}
+          key={crumb}
+        >
           <Link to={path}>{capitalizeWords(crumb)}</Link>
         </div>
       );
@@ -88,9 +75,13 @@ const BreadcrumbTrail = () => {
     <Wrapper>
       <div className="container">
         <div className="breadcrumbs">
-          <div className="crumb">
-            <Link to="/">Home</Link>
-          </div>
+          {location.pathname != "/" && (
+            <div className="crumb">
+              <Link to="/" style={{ color: "#4e4c4c88" }}>
+                Home
+              </Link>
+            </div>
+          )}
           {crumbs}
         </div>
       </div>

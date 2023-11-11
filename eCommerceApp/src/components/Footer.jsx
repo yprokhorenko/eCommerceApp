@@ -8,6 +8,7 @@ const Wrapper = styled.section`
   .footer {
     background-color: #f2f2f2;
     padding: 20px 30px;
+    margin-top: 80px;
 
     .footer-container {
       display: flex;

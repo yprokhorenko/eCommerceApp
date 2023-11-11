@@ -15,7 +15,7 @@ const Wrapper = styled.div`
 }
   .trail {
     margin-left: 265px;
-    margin-top: 50px;
+    /* margin-top: 50px; */
     margin-bottom: -15px;
   }
 
@@ -28,7 +28,6 @@ const Wrapper = styled.div`
   }
   .filtersSection {
     width: 250px;
-    border: 0.5px solid #33333322;
     border-radius: 5px;
   }
   .secondCol {
@@ -90,15 +89,17 @@ const Wrapper = styled.div`
 
     .filtersSection {
       position: fixed;
-      left: ${({ openFilters }) => (openFilters ? "80px" : "-5px")};
+      left: ${({ openFilters }) => (openFilters ? "0px" : "-5px")};
       z-index: 3;
-      margin-top: -129px;
-      transition: left 1s ease;
+      margin-top: -67px;
     }
     .list {
       min-height: 100vh;
     }
     .sidebar-btn {
+      margin-top: 10px;
+            margin-bottom: -10px;
+
       background-color: transparent;
       border: none;
       display: block;
@@ -119,6 +120,7 @@ const ProductsPage = () => {
   const products = useSelector((state) => state.products.filtered_products);
   const sort = useSelector((state) => state.products.sort);
   const filters = useSelector((state) => state.products.filters);
+  const [openFilters, setOpenFilters] = useState(true);
 
   const handleUpdateSort = (e) => {
     // const name = e.target.name;
@@ -166,26 +168,26 @@ const ProductsPage = () => {
           );
         } 
 
-        const [openFilters, setOpenFilters] = useState(true);
 
   return (
-    <Wrapper>
-     <div className="trail">
-        <button onClick={()=> {setOpenFilters(!openFilters)}} className="sidebar-btn"> {openFilters? <VscLayoutSidebarLeftOff/> : <VscLayoutSidebarLeft/>} </button>
-     </div>
-      <div className="wrapper">
-       {openFilters && <div className="filtersSection" onMouseLeave={()=> {setOpenFilters(!openFilters)}} >
-          <Filters updateFiltersComponent ={updateFiltersComponent } clearFilter={clearFilter}  />
-        </div>} 
-        
-        <div className="secondCol">
-        <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
-          <div className="list">
-            <ProductList products={products}/>
-          </div>
+    <Wrapper openFilters={openFilters}>
+    <div className="trail">
+      <button onClick={() => { setOpenFilters(!openFilters) }} className="sidebar-btn">
+        {openFilters ? <VscLayoutSidebarLeftOff /> : <VscLayoutSidebarLeft />}
+      </button>
+    </div>
+    <div className="wrapper">
+      <div className="filtersSection" >
+        {openFilters && <Filters updateFiltersComponent={updateFiltersComponent} clearFilter={clearFilter} />}
+      </div>
+      <div className="secondCol">
+        <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort} />
+        <div className="list">
+          <ProductList products={products} />
         </div>
       </div>
-    </Wrapper>
+    </div>
+  </Wrapper>
   );
 };
 export default ProductsPage;

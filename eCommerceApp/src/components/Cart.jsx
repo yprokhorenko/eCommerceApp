@@ -9,6 +9,8 @@ import { capitalizeWords } from "../constants";
 
 const Wrapper = styled.section`
       position: absolute;
+      display: flex;
+      justify-content: center;
   .cart {
     visibility: none;
     width: 500px;
@@ -18,7 +20,7 @@ const Wrapper = styled.section`
     border-radius: 6px;
     z-index: 44;
     top: 1px;
-    right: 15%;
+    /* right: 15%; */
     color: black;
     // border-radius: 4px;
     padding: 20px 10px;
@@ -180,6 +182,21 @@ const Wrapper = styled.section`
       background-color: transparent;
       cursor: pointer;
     }
+    @media (max-width: 540px) {
+      .cart {
+          width: 90vw;
+          transform: scale(0.9);
+      }
+
+      .amount {
+        display: flex;
+        flex-direction: column;
+      }
+      .cart_main {
+        width: 250px;
+        min-width: 100px;
+      }
+    }
   
 `;
 
@@ -217,7 +234,7 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
           <div className="cart_container">
             {products?.map((item) => (
               <div className="cart_item" key={item.id}>
-                <Link  Link to={`/product/${item.originalID}`} className="cart_main" onClick = {handleCloseCart}>
+                <Link  Link to={`/products/${item.originalID}`} className="cart_main" onClick = {handleCloseCart}>
                   <div className="cart_img">
                     <img src={item.image} alt="" className="cartImg_link" />
                   </div>

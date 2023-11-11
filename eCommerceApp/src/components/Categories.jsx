@@ -7,7 +7,7 @@ const Wrapper = styled.section`
     height: 80vh;
     gap: 10px;
     /* margin: 10px; */
-    width: 100vw;
+    /* width: 100vw; */
 
     .col {
       flex: 1;

@@ -9,24 +9,36 @@ import { getProducts } from "./redux/productsSlice";
 import { useDispatch } from "react-redux";
 import ProductsPage from "./pages/ProductsPage";
 import BreadcrumbTrail from "./components/BreadcrumbTrail";
+import styled from "styled-components";
+
+const Wrapper = styled.div`
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+`
+
 
 const App = () => {
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-       dispatch(getProducts());
-     }, []);
+  useEffect(() => {
+    dispatch(getProducts());
+  }, []);
 
   return (
     <div className="wrapper">
       <Router>
         <Navbar />
-        <BreadcrumbTrail/>
+        <Wrapper className="crumb-cont">
+          <BreadcrumbTrail />
+        </Wrapper>
+
         <div className="main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products"  element={<ProductsPage />} />
-            <Route path="/products/:id"  element={<Product />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:id" element={<Product />} />
           </Routes>
         </div>
         <Footer />
@@ -36,3 +48,4 @@ const App = () => {
 };
 
 export default App;
+

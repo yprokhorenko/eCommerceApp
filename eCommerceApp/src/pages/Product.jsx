@@ -125,9 +125,25 @@ const Wrapper = styled.div`
 
   @media (max-width: 630px) {
     .product {
-      display: flex ;
-      justify-content: center ;
-      
+      display: flex;
+      justify-content: center;
+    }
+    .product > .left {
+      margin-bottom: 0px;
+
+      margin-top: -40px auto !important;
+    }
+    .product {
+      padding: 10px 20px !important;
+    }
+    .right > hr {
+      display: none !important;
+    }
+
+    .left {
+      margin-top: -40px;
+      margin-right: 0px !important;
+      margin-bottom: -30px !important;
     }
   }
 `;
