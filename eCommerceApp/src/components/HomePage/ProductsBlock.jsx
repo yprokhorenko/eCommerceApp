@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 const Wrapper = styled.section`
   .productsContainer {
     max-width: 1260px;
-    margin: 100px auto;
+    margin: 70px auto;
     padding: 0 30px;
     display: flex;
     flex-direction: column;

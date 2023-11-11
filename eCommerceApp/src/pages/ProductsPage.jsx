@@ -1,28 +1,22 @@
-import BreadcrumbTrail from "../components/BreadcrumbTrail";
 import Filters from "../components/productsPage/Filters";
 import ProductList from "../components/productsPage/ProductList";
 import styled from "styled-components";
 import Sort from "../components/productsPage/Sort";
 import { useDispatch, useSelector } from "react-redux";
 import { clearFilters, filterProducts, startSort, updateFilters, updateSort } from "../redux/productsSlice";
-import { useEffect } from "react";
 import Loading from "../components/Loading";
+import { useEffect, useState } from "react";
+
+import {VscLayoutSidebarLeft, VscLayoutSidebarLeftOff} from "react-icons/vsc";
 
 const Wrapper = styled.div`
+.sidebar-btn {
+  display: none;
+}
   .trail {
     margin-left: 265px;
     margin-top: 50px;
     margin-bottom: -15px;
-  }
-  @media (max-width: 1199px) {
-    .trail {
-      margin-left: 255px;
-    }
-  }
-  @media (max-width: 970px) {
-    .trail {
-      margin-left: 189px;
-    }
   }
 
   .wrapper {
@@ -46,6 +40,18 @@ const Wrapper = styled.div`
     /* background-color: green; */
   }
 
+  @media (max-width: 1199px) {
+    .trail {
+      margin-left: 255px;
+    }
+  }
+  @media (max-width: 970px) {
+    .trail {
+      margin-left: 189px;
+      display: flex;
+    }
+  }
+
   @media (max-width: 1200px) {
     .wrapper {
       width: 950px;
@@ -66,6 +72,42 @@ const Wrapper = styled.div`
     }
     .filtersSection {
       width: 180px;
+    }
+  }
+
+  @media (max-width: 614px) {
+    .trail {
+      display: flex;
+      gap: 0px;
+      flex-direction: row-reverse;
+      width: 200px;
+      /* margin-right: 260px ; */
+
+    }
+    .wrapper {
+      width: 350px !important;
+    }
+
+    .filtersSection {
+      position: fixed;
+      left: ${({ openFilters }) => (openFilters ? "80px" : "-5px")};
+      z-index: 3;
+      margin-top: -129px;
+      transition: left 1s ease;
+    }
+    .list {
+      min-height: 100vh;
+    }
+    .sidebar-btn {
+      background-color: transparent;
+      border: none;
+      display: block;
+      font-size: 23px;
+      cursor: pointer;
+      margin-right: 140px;
+      color: #05bc51ac;
+      outline: none;
+
     }
   }
 `;
@@ -124,18 +166,20 @@ const ProductsPage = () => {
           );
         } 
 
+        const [openFilters, setOpenFilters] = useState(true);
+
   return (
     <Wrapper>
      <div className="trail">
-     <BreadcrumbTrail title="Products" />
+        <button onClick={()=> {setOpenFilters(!openFilters)}} className="sidebar-btn"> {openFilters? <VscLayoutSidebarLeftOff/> : <VscLayoutSidebarLeft/>} </button>
      </div>
       <div className="wrapper">
-        <div className="filtersSection">
-          <Filters updateFiltersComponent ={updateFiltersComponent } clearFilter={clearFilter} />
-        </div>
+       {openFilters && <div className="filtersSection" onMouseLeave={()=> {setOpenFilters(!openFilters)}} >
+          <Filters updateFiltersComponent ={updateFiltersComponent } clearFilter={clearFilter}  />
+        </div>} 
         
         <div className="secondCol">
-          <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
+        <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort}/>
           <div className="list">
             <ProductList products={products}/>
           </div>

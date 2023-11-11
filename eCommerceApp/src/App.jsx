@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import { getProducts } from "./redux/productsSlice";
 import { useDispatch } from "react-redux";
 import ProductsPage from "./pages/ProductsPage";
+import BreadcrumbTrail from "./components/BreadcrumbTrail";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -20,11 +21,12 @@ const App = () => {
     <div className="wrapper">
       <Router>
         <Navbar />
+        <BreadcrumbTrail/>
         <div className="main">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/products" element={<ProductsPage />} />
-            <Route path="/product/:id" element={<Product />} />
+            <Route path="/products"  element={<ProductsPage />} />
+            <Route path="/products/:id"  element={<Product />} />
           </Routes>
         </div>
         <Footer />

@@ -8,7 +8,6 @@ const Wrapper = styled.div`
     justify-content: space-between;
     gap: 15px;
     align-items: center;
-    
   }
   .form {
     display: flex;
@@ -30,18 +29,31 @@ const Wrapper = styled.div`
     align-self: flex-end;
   }
 
-
+  @media (max-width: 614px) {
+    .productsAmount,
+    label {
+      font-size: 14px !important;
+    }
+    .container {
+      display: flex !important;
+      align-items: center !important;
+      flex-direction: row-reverse;
+    }
+    .productsAmount {
+      align-self: initial;
+    }
+  }
 `;
 
 
 
-const Sort = ({ products, handleUpdateSort, sort }) => {
+const Sort = ({ products, handleUpdateSort, sort}) => {
 
  
   return (
     <Wrapper>
       <div className="container">
-        <p className="productsAmount">{products.length} Products Found</p>
+        <p className="productsAmount">{products.length} Products</p>
         <div className="">
           <form action="" className="form">
             <label htmlFor="sort">Sort by</label>

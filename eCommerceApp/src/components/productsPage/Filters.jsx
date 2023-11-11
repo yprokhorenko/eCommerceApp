@@ -164,6 +164,14 @@ const Wrapper = styled.div`
   .clear-btn:active {
     background-color: #3333331a;
   }
+
+
+  @media (max-width: 614px) {
+.container {
+  background-color: #f5f5f5;
+  height: 100vh !important;
+}
+  }
 `;
 
 const Filters = ({ clearFilter, updateFiltersComponent }) => {

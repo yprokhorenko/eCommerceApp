@@ -51,7 +51,7 @@ const Wrapper = styled.div`
     padding: 10px 50px;
     display: flex;
     gap: 10px;
-    margin-top: 60px;
+    margin-top: 30px;
     
 
     .left {
@@ -67,7 +67,7 @@ const Wrapper = styled.div`
       flex: 1;
       display: flex;
       flex-direction: column;
-      margin-top: -50px;
+      margin-top: -30px;
       padding: 10px;
 
       .card-title {
@@ -201,7 +201,7 @@ export default function Product() {
       </div>
 
       <div className="right">
-        <BreadcrumbTrail title={product.name} product={product} />
+        {/* <BreadcrumbTrail title={product.name} product={product} /> */}
         <h3 className="card-title">{capitalizeWords(product.name)}</h3>
         <Stars stars={product.stars} reviews={product.reviews} />
         <span className="price">${product?.price / 100}</span>

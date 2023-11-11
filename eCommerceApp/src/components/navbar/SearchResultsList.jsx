@@ -67,7 +67,7 @@ const SearchResultsList = ({ results, setShowList, setInput }) => {
           const { name, price, image, id } = result;
           return (
             <NavLink
-              to={`/product/${id}`}
+              to={`/products/${id}`}
               onClick={handleChange}
               key={id}
               className="search-result"

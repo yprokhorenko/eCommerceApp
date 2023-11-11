@@ -169,7 +169,7 @@ export default function Card({item}) {
   return (
     <Wrapper>
       <div className="card">
-        <NavLink to={`/product/${item.id}`} className="card_link">
+        <NavLink to={`/products/${item.id}`} className="card_link">
           <div className="card_img">
             {item?.shipping && (
               <span className="new-season">Free Shipping</span>
@@ -188,7 +188,7 @@ export default function Card({item}) {
             <span className="price">${item.price / 100}</span>
           </div>
 
-          <Link to={`/product/${item.id}`} className="toProduct">
+          <Link to={`/products/${item.id}`} className="toProduct">
             <BsArrowUpRightCircle className="toProduct-icon" />
           </Link>
           {/* <div className="buy-icon" onClick={() => handleAddToCart(item)}>

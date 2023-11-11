@@ -32,15 +32,14 @@
 
 @media (max-width: 614px) {
   .main {
-     width:450px;
-     display: flex;
+     width:450px !important;
+    //  display: flex;
      justify-content: center;
   }
 }
 @media (max-width: 515px) {
   .main {
      width: 300px;
-     display: flex;
      justify-content: center;
   }
 }
