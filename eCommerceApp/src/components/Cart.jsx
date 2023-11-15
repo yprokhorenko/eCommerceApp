@@ -243,7 +243,7 @@ const Cart = ({isCartOpen,setIsCartOpen}) => {
                           <h4 className="cart_name">{capitalizeWords(item.name)}</h4>
                           <button className="product-color" style={{backgroundColor: item.mainColor}}> </button>
                       </div>
-                    <p className="cart_desc">{item.description.substring(0, 50)}</p>
+                      <p className="cart_desc">{item.description ? item.description.substring(0, 50) : ""}</p>
                     <p className="cart_price"> {item.amount} x ${item.price/100}</p>
                   </div>
                 </Link>

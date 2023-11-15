@@ -8,6 +8,7 @@ import {
   MdOutlinePermIdentity,
   MdOutlineShoppingCart,
   MdOutlineFavoriteBorder,
+  MdRadioButtonUnchecked,
 } from "react-icons/md";
 import facebook from "../images/facebook.svg";
 import Cart from "./Cart";
@@ -17,6 +18,7 @@ import SidebarHeader from "./SidebarHeader";
 import CatalogHeader from "./CatalogHeader";
 import SearchBar from "./navbar/SearchBar";
 import SearchResultsList from "./navbar/SearchResultsList";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 const navRight = [
   { id: 1, name: "Man", link: "/man" },
@@ -197,6 +199,12 @@ const Wrapper = styled.div`
 `;
 
 export default function Navbar() {
+  // const [myUser, setMyUser] = useState(null);
+  // const {isAuthenticated, loginWithRedirect, logout, user, isLoading} = useAuth0();
+  // console.log("isAuthenticated",isAuthenticated)
+  // console.log("myUser",myUser)
+  
+
   const dispatch = useDispatch();
 
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
@@ -219,63 +227,110 @@ export default function Navbar() {
           }
   };
 
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     setMyUser(user);
+  //   } else {
+  //     setMyUser(false);
+  //   }
+  // }, [isAuthenticated]);
+
 return (
-    <Wrapper>
-      <div className="navbar"  onClick={onNavbarClickHandler} >
-        <div className="navbar_container">
-                                                                 {/*     S I D E    M E N U     */}
+  <Wrapper>
+    <div className="navbar" onClick={onNavbarClickHandler}>
+      <div className="navbar_container">
+        {/*     S I D E    M E N U     */}
 
-            <button className="sidebar-btn">
-              <TbMenu2
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-              />
-              {isSidebarOpen && (
-                <SidebarHeader menuItems={navLeft} facebook={facebook} isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-              )}
-            </button>
+        <button className="sidebar-btn">
+          <TbMenu2 onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
+          {isSidebarOpen && (
+            <SidebarHeader
+              menuItems={navLeft}
+              facebook={facebook}
+              isSidebarOpen={isSidebarOpen}
+              setIsSidebarOpen={setIsSidebarOpen}
+            />
+          )}
+        </button>
 
-            <NavLink exact to="/" className="store-logo">
-              <img className="logo-img" src={facebook} alt="Logo" />
-            </NavLink>
+        <NavLink exact to="/" className="store-logo">
+          <img className="logo-img" src={facebook} alt="Logo" />
+        </NavLink>
 
-                                         {/*  --------------------------   C    A    T    A     L     O      G   --------------------------   */}
-            <div className="catalog minDisplay"> 
-                <button className="catalog-btn" onClick={(e)=>{setIsCatalogOpen(!isCatalogOpen), e.stopPropagation();}}>
-                  <TbCategory2 style={{ fontSize: "25px" }} /> <p className="catalog-text" style={{ fontSize: "16px" }}>Catalog</p>
-                </button>
-                {isCatalogOpen && <CatalogHeader catalog={navRight} setIsCatalogOpen={setIsCatalogOpen} isCatalogOpen={isCatalogOpen} />}
-            </div>
-                                                                {/*     S E A R C H    B A R     */}
-            
-            <div className="search-bar-container">
-                <SearchBar setResults={setResults} input={input} setShowList={setShowList} setInput={setInput} /> 
-                {results && results.length > 0  && showList &&  ( <SearchResultsList setInput={setInput} showList={showList} results={results} setShowList={setShowList}  />)} 
-            </div>
+        {/*  --------------------------   C    A    T    A     L     O      G   --------------------------   */}
+        <div className="catalog minDisplay">
+          <button
+            className="catalog-btn"
+            onClick={(e) => {
+              setIsCatalogOpen(!isCatalogOpen), e.stopPropagation();
+            }}
+          >
+            <TbCategory2 style={{ fontSize: "25px" }} />{" "}
+            <p className="catalog-text" style={{ fontSize: "16px" }}>
+              Catalog
+            </p>
+          </button>
+          {isCatalogOpen && (
+            <CatalogHeader
+              catalog={navRight}
+              setIsCatalogOpen={setIsCatalogOpen}
+              isCatalogOpen={isCatalogOpen}
+            />
+          )}
+        </div>
+        {/*     S E A R C H    B A R     */}
 
-                                                                {/*     I C O N S    P A N E L    */}
-            <> 
-                {/* <NavLink to="/search" className="search-icon icon">
+        <div className="search-bar-container">
+          <SearchBar
+            setResults={setResults}
+            input={input}
+            setShowList={setShowList}
+            setInput={setInput}
+          />
+          {results && results.length > 0 && showList && (
+            <SearchResultsList
+              setInput={setInput}
+              showList={showList}
+              results={results}
+              setShowList={setShowList}
+            />
+          )}
+        </div>
+
+        {/*     I C O N S    P A N E L    */}
+        <>
+          {/* <NavLink to="/search" className="search-icon icon">
                   <MdOutlineSearch />{" "}
                 </NavLink> */}
-                <NavLink to="/profile" className="profile-icon icon minDisplay">
-                  <MdOutlinePermIdentity />
-                </NavLink>
-                <NavLink to="/favorite" className="favorite-icon icon minDisplay">
-                  <MdOutlineFavoriteBorder />
-                </NavLink>
-                <NavLink onClick={() => dispatch(setIsCartOpen(!isCartOpen))} className="cart-icon icon">
-                    <MdOutlineShoppingCart  />
-                    {products.length > 0 && <span >{products.length}</span>}
-                </NavLink>
-            </>
-            
-            {isCartOpen && <Cart  isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />}
-        
+          <NavLink to="/profile" className="profile-icon icon minDisplay">
+            <MdOutlinePermIdentity />
+          </NavLink>
+          <NavLink to="/favorite" className="favorite-icon icon minDisplay">
+            <MdOutlineFavoriteBorder />
+          </NavLink>
+          <NavLink
+            onClick={() => dispatch(setIsCartOpen(!isCartOpen))}
+            className="cart-icon icon"
+          >
+            <MdOutlineShoppingCart />
+            {products.length > 0 && <span>{products.length}</span>}
+          </NavLink>
+        </>
 
+        {isCartOpen && (
+          <Cart isCartOpen={isCartOpen} setIsCartOpen={setIsCartOpen} />
+        )}
 
-        </div>
-        
+        {/* {myUser ? (
+          <button onClick={() => logout({ returnTo: window.location.origin })}>
+            Logout
+          </button>
+        ) : (
+          <button onClick={()=> loginWithRedirect()}>Login</button>
+        )} 
+        {myUser && <><img src={myUser.picture} alt=""   /> <p>{myUser.nickname}</p> </>} */}
       </div>
-    </Wrapper>
-  );
+    </div>
+  </Wrapper>
+);
 }

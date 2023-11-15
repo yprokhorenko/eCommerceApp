@@ -2,18 +2,18 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+
 .catalog {
     position: absolute;
-    top: 70px;
-    left: 230px;
-    width: 1000px;
+    top: 56px;
+    margin: 0 auto;
+    max-width: 900px;
+    width: 60vw;
     background-color: white;
     color: black;
     border-radius: 4px;
     height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+  
     padding: 10px;
     z-index: 22;
   }
