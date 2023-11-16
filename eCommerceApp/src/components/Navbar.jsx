@@ -302,7 +302,7 @@ return (
           {/* <NavLink to="/search" className="search-icon icon">
                   <MdOutlineSearch />{" "}
                 </NavLink> */}
-          <NavLink to="/profile" className="profile-icon icon minDisplay">
+          <NavLink to="/cabinet" className="profile-icon icon minDisplay">
             <MdOutlinePermIdentity />
           </NavLink>
           <NavLink to="/favorite" className="favorite-icon icon minDisplay">
