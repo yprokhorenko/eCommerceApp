@@ -16,7 +16,7 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   max-width: 1200px;
-
+ margin: 0 auto;
   @media (max-width: 630px) {
     .product>.left {
       margin: 0 auto !important;     
