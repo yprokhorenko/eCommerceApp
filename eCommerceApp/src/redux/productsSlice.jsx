@@ -192,7 +192,7 @@ export const productsSlice = createSlice({
       .addCase(getSingleProduct.rejected, (state, action) => {
         state.productLoading = false;
         state.productError = action.error.message;
-      });
+      })
   },
 });
 

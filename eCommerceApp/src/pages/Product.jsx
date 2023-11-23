@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { MdFavoriteBorder, MdBalance } from "react-icons/md";
+import { MdFavoriteBorder, MdFavorite} from "react-icons/md";
 import { useParams } from "react-router-dom";
 import { addToCart } from "../redux/cartSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { setIsCartOpen } from "../redux/cartSlice";
+import { setIsCartOpen,addToFavorite } from "../redux/cartSlice";
 import { getSingleProduct } from "../redux/productsSlice";
 import { single_product_url } from "../constants";
 import Loading from "../components/Loading";
@@ -146,6 +146,12 @@ const Wrapper = styled.div`
       margin-bottom: -30px !important;
     }
   }
+  .favorite {
+    color: red;
+  }
+  .icon {
+    font-size: 19px;
+  }
 `;
 
 export default function Product() {
@@ -155,6 +161,7 @@ export default function Product() {
   useEffect(() => {
     dispatch(getSingleProduct(`${single_product_url}${id}`));
   }, [id]);
+
   const product = useSelector((state) => state.products.product);
   const [mainColor, setMainColor] = useState(null);
 
@@ -171,7 +178,11 @@ export default function Product() {
     if (product && product.colors && product.colors.length > 0) {
       setMainColor(product.colors[0]);
     }
+
   }, [product]);
+  const favoriteProducts = useSelector((state) => state.cart.favoriteProducts);
+  const isInFavorites = favoriteProducts && favoriteProducts.some((item) => item.id === product.id);
+
 
   const isItemInCart = cartItems.some((cartItem) => cartItem.id === product.id+mainColor);
   const isCartOpen = useSelector((state) => state.cart.isCartOpen);
@@ -200,7 +211,18 @@ export default function Product() {
     }
   };
 
+console.log("product.id",product.id)
 
+const addToFavoriteHandle = () => {
+   dispatch(addToFavorite({
+    id: product.id,
+    name: product.name,
+    description: product.description,
+    price: product.price,
+    image: product.images[0].url,
+    colors: product.colors
+   }))
+}
 
   if (productLoading) {
     return <main style={{height: "100vh",paddingTop: "200px"}} >
@@ -208,6 +230,7 @@ export default function Product() {
     </main>;
   }
 
+ 
 
   return (
     <Wrapper>
@@ -238,12 +261,12 @@ export default function Product() {
         </div>
 
         <div className="links">
-          <div className="item">
-            <MdFavoriteBorder /> ADD TO WISH LIST
-          </div>
-          <div className="item">
+        <div className="item" onClick={addToFavoriteHandle}>
+           {isInFavorites ? <MdFavorite style={{ color: "#F44336", fontSize:"18px"}}/>  : <MdFavoriteBorder style={{fontSize:"18px"}}/>  } ADD TO WISH LIST
+        </div>
+          {/* <div className="item">
             <MdBalance /> ADD TO COMPARE
-          </div>
+          </div> */}
         </div>
         <div className="info">
           <span>Vendor: Polo</span>

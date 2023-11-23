@@ -5,7 +5,7 @@ import { NavLink, Outlet } from "react-router-dom";
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  /* background-color: #dbdbdb90; */
+  margin-top: 20px;
 
   .container {
     width: 80%;
@@ -17,19 +17,22 @@ const Wrapper = styled.div`
 
   }
 
+ 
   .left-panel {
     width: 23%;
     padding: 15px;
     color: #727272;
-    /* border: 1px solid green; */
     background-color: #dbdbdb90;
     border-radius: 0px;
     min-width: 200px;
   }
-
+  @media (max-width: 600px) {
+    .left-panel {
+  
+    }
+  }
   .right {
     flex: 1;
-    padding: 20px;
   }
 
   .sidenav {

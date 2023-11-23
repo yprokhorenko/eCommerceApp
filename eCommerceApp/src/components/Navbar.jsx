@@ -305,7 +305,7 @@ return (
           <NavLink to="/cabinet" className="profile-icon icon minDisplay">
             <MdOutlinePermIdentity />
           </NavLink>
-          <NavLink to="/favorite" className="favorite-icon icon minDisplay">
+          <NavLink to="/cabinet/wishlist" className="favorite-icon icon minDisplay">
             <MdOutlineFavoriteBorder />
           </NavLink>
           <NavLink

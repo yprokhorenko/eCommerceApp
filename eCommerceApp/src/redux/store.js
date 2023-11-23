@@ -1,12 +1,8 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, combineReducers  } from "@reduxjs/toolkit";
 import cartSlice from "./cartSlice";
-// const stripe = require('stripe')('sk_test_51NvHXhGH52tEgJDVhqkDEQ7bn2ifoKUKAVNS0nKkdLgbM0JWnBCyEpYhPA98RuJRM2ERHcJ5w7JNjaacHXjB3Vj100Ct6DVsh9');
-
-// export const store = configureStore({
-//   reducer: {
-//     cart: cartSlice,
-//   },
-// });
+import productsSlice from "./productsSlice";
+import navbarSlice from "./navbarSlice";
+import storage from 'redux-persist/lib/storage'
 
 import {
   persistStore,
@@ -18,10 +14,6 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
-import navbarSlice from "./navbarSlice";
-import productsSlice from "./productsSlice";
-
 
 
 const persistConfig = {
