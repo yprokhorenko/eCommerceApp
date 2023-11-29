@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { useForm, ValidationError } from "@formspree/react";
 
 const Wrapper = styled.section`
+
+ @media (max-width: 600px) {
+         width: 100vw;
+  }
+
   .contact-block {
     background-color: #2879fe;
     padding: 15px;

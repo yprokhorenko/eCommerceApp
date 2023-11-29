@@ -1,12 +1,12 @@
-
 .App {
   font-family: sans-serif;
   text-align: center;
 }
+
 /* footer fixed to the bottom  */
- html,
- body,
- #root {
+html,
+body,
+#root {
   height: 100%;
 }
 
@@ -21,24 +21,16 @@
 
 
 .wrapper-content {
-  flex-grow: 1 ;
+  flex-grow: 1;
   max-width: 1200px;
   margin: 0 auto;
 }
 
 @media (max-width: 614px) {
   .main {
-     width:450px !important;
-    //  display: flex;
+   width:90vw !important;
+   display: flex;
      justify-content: center;
   }
-}
-@media (max-width: 515px) {
-  .main {
-    width:90vw !important;
-     justify-content: center;
-  }
-}
-
-
-
+ }
+ 
