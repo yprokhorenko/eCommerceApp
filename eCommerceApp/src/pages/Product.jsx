@@ -17,18 +17,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   max-width: 1200px;
  margin: 0 auto;
-  @media (max-width: 630px) {
-    .product>.left {
-      margin: 0 auto !important;     
-    }
-    .product {
-      padding: 10px 20px !important;
-
-    }
-  .right>hr {
-    display: none !important;
-  }
-  }
+ 
 
   @media (max-width: 930px) {
     .product {
@@ -52,7 +41,6 @@ const Wrapper = styled.div`
     display: flex;
     gap: 10px;
     margin-top: 30px;
-    
 
     .left {
       display: flex;
@@ -134,7 +122,7 @@ const Wrapper = styled.div`
       margin-top: -40px auto !important;
     }
     .product {
-      padding: 10px 20px !important;
+      padding: 0px !important;
     }
     .right > hr {
       display: none !important;
@@ -151,6 +139,23 @@ const Wrapper = styled.div`
   }
   .icon {
     font-size: 19px;
+  }
+
+  @media (max-width: 630px) {
+    .product>.left {
+      margin: 0 auto !important;     
+    }
+    .product {
+      /* padding: 10px 20px !important; */
+
+
+    }
+  .right>hr {
+    display: none !important;
+  }
+  .right {
+         padding: 0 20px !important;
+  }
   }
 `;
 

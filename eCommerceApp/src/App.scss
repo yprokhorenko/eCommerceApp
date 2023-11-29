@@ -3,8 +3,6 @@
   font-family: sans-serif;
   text-align: center;
 }
-
-
 /* footer fixed to the bottom  */
  html,
  body,
@@ -18,7 +16,6 @@
   flex-direction: column;
   // justify-content: center;
   margin: 0 auto;
-
 }
 
 
@@ -27,7 +24,6 @@
   flex-grow: 1 ;
   max-width: 1200px;
   margin: 0 auto;
-  
 }
 
 @media (max-width: 614px) {
@@ -39,7 +35,7 @@
 }
 @media (max-width: 515px) {
   .main {
-     width: 300px;
+    width:90vw !important;
      justify-content: center;
   }
 }

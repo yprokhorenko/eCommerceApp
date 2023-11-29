@@ -18,6 +18,8 @@ import SidebarHeader from "./SidebarHeader";
 import CatalogHeader from "./CatalogHeader";
 import SearchBar from "./navbar/SearchBar";
 import SearchResultsList from "./navbar/SearchResultsList";
+import { FcLike,FcShop,FcWorkflow    } from "react-icons/fc";
+
 // import { useAuth0 } from "@auth0/auth0-react";
 
 const navRight = [
@@ -28,10 +30,9 @@ const navRight = [
 ];
 
 const navLeft = [
-  { id: 5, name: "Homepage", link: "/" },
-  { id: 6, name: "About", link: "/about" },
-  { id: 7, name: "Contact", link: "/contact" },
-  { id: 8, name: "Stores", link: "/stores" },
+  { id: 5, name: "Homepage", url: "/" , icon: <FcShop /> },
+  { id: 6, name: "Products", url: "/products" , icon: <FcWorkflow  /> },
+  { id: 7, name: "Wishlist", url: "/cabinet/wishlist", icon: <FcLike/> }
 ];
 
 const Wrapper = styled.div`
@@ -243,14 +244,12 @@ return (
 
         <button className="sidebar-btn">
           <TbMenu2 onClick={() => setIsSidebarOpen(!isSidebarOpen)} />
-          {isSidebarOpen && (
             <SidebarHeader
               menuItems={navLeft}
               facebook={facebook}
               isSidebarOpen={isSidebarOpen}
               setIsSidebarOpen={setIsSidebarOpen}
             />
-          )}
         </button>
 
         <NavLink exact to="/" className="store-logo">

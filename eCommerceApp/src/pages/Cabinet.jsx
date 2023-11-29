@@ -53,6 +53,34 @@ const Wrapper = styled.div`
       color: #2e2e2efd;
     }
   }
+
+  @media (max-width: 665px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: initial !important;
+
+    }
+    .left-panel {
+      width: 80vw;
+      margin-bottom: 20px;
+    }
+    .sidenav {
+      display: flex;
+      gap: 20px;
+      flex-direction: row;
+    
+    }
+    .right {
+      width: 80vw !important;
+      display: flex;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+
+}
 `;
 
 const Cabinet = () => {
@@ -79,7 +107,7 @@ const Cabinet = () => {
           </div>
         </div>
         <div className="right">
-          <Outlet />
+          <Outlet/>
         </div>
       </div>
     </Wrapper>

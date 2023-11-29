@@ -52,6 +52,8 @@ const Wrapper = styled.section`
   .breadcrumbs .crumb:last-child a {
     color: #333333d6;
   }
+
+  
 `;
 
 const BreadcrumbTrail = () => {

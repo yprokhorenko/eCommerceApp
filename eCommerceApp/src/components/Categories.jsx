@@ -90,7 +90,7 @@ const Categories = () => {
               alt=""
             />
             <button>
-              <NavLink to="/products/1" className="link">
+              <NavLink to="/products" className="link">
                 Dining
               </NavLink>
             </button>
@@ -104,7 +104,7 @@ const Categories = () => {
               alt=""
             />
             <button>
-              <NavLink to="/products/1" className="link">
+              <NavLink to="/products" className="link">
                 Bedroom
               </NavLink>
             </button>
@@ -119,7 +119,7 @@ const Categories = () => {
                   alt=""
                 />
                 <button>
-                  <NavLink to="/products/1" className="link">
+                  <NavLink to="/products" className="link">
                     Office
                   </NavLink>
                 </button>
@@ -133,7 +133,7 @@ const Categories = () => {
                   alt=""
                 />
                 <button>
-                  <NavLink to="/products/1" className="link">
+                  <NavLink to="/products" className="link">
                     Kitchen
                   </NavLink>
                 </button>
@@ -146,7 +146,7 @@ const Categories = () => {
               alt=""
             />
             <button>
-              <NavLink to="/products/1" className="link">
+              <NavLink to="/products" className="link">
                 Free Shipping
               </NavLink>
             </button>

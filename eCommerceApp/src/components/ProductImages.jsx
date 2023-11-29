@@ -98,23 +98,25 @@ const Wrapper = styled.div`
 
     @media (max-width: 515px) {
    .container {
-    width: 300px;
+    width: 360px !important;
    }
    .mainImg {
-    height: 220px;
+    height: 250px;
+    width: 100% !important;
   }
   .mini-img {
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
   
+  }
+  .gallery {
+    padding: 0 5px;
   }
 
   .arrowButton  {
     height: 30px;
     width: 30px;
   }
-
-
     } 
 
 `;

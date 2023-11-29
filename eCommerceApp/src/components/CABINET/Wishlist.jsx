@@ -90,7 +90,14 @@ const Container = styled.div`
   .remove-icon:hover {
     color: #ff0000;
   }
-  
+
+  @media (max-width: 665px) {
+  margin-left: 0px !important;
+ }
+ .wishlist-container {
+  display: flex;
+  justify-content: center ;
+ }
 `;
 
 const Wishlist = () => {

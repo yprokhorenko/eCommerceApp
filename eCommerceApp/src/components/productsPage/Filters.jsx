@@ -4,6 +4,7 @@ import { getUniqueValues } from "../../constants";
 import { removeText, updateFilters } from "../../redux/productsSlice";
 import {FaCheck} from 'react-icons/fa'
 import {MdClose} from 'react-icons/md'
+import { useState } from "react";
 
 // import {capitalizeWords} from "../../constants.js"
 
@@ -11,12 +12,16 @@ const Wrapper = styled.div`
   button,
   input,
   select {
-    cursor: pointer;
+  cursor: pointer;
   }
+
   .container {
     padding: 20px;
     position: relative;
+    z-index: 21; 
   }
+
+
 
   .text-input {
     border: none;
@@ -33,7 +38,7 @@ const Wrapper = styled.div`
     right: 38px;
     top: 36px;
     color: #333;
-    background-color: red;
+    /* background-color: red; */
     z-index: 20;
     position: absolute;
     background-color: transparent;
@@ -99,7 +104,6 @@ const Wrapper = styled.div`
   }
 
   .company {
-    background-color: red;
   }
   .company-select {
     border: none;
@@ -171,10 +175,23 @@ const Wrapper = styled.div`
   background-color: #f5f5f5;
   height: 100vh !important;
 }
+.overlay {
+  width: 3000px;
+  height: 100%;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: ${(props) => (props.isOpen ? "block" : "none")};
+  position: fixed;
+  top: 0;
+  left: 0; 
+  transition: none;
+  margin-top: -70px;
+}
   }
 `;
 
-const Filters = ({ clearFilter, updateFiltersComponent }) => {
+const Filters = ({ clearFilter, updateFiltersComponent,setOpenFilters,openFilters }) => {
+  const [showOverlay, setShowOverlay] = useState(false);
   const dispatch = useDispatch();
   const {
     text,
@@ -191,10 +208,16 @@ const Filters = ({ clearFilter, updateFiltersComponent }) => {
   const categories = getUniqueValues(products, "category");
   const companies = getUniqueValues(products, "company");
   const colors = getUniqueValues(products, "colors");
+  const handleToggleSidebar = () => {
+    setOpenFilters(!openFilters);
+  };
 
   return (
-    <Wrapper>
+    <Wrapper isOpen={openFilters} on >
+        <div className="overlay" onClick={handleToggleSidebar}></div> 
+
       <div className="container">
+
         <form action="" className="form" onSubmit={(e) => e.preventDefault()}>
           {/* text search  */}
           <div className="form-control">

@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   display: none;
 }
   .trail {
-    margin-left: 265px;
+    /* margin-left: 265px; */
     /* margin-top: 50px; */
     margin-bottom: -15px;
   }
@@ -25,10 +25,12 @@ const Wrapper = styled.div`
     flex-direction: row;
     margin: 30px auto 0;
     width: 1150px;
+    
   }
   .filtersSection {
     width: 250px;
     border-radius: 5px;
+    transition: all 1s ease;
   }
   .secondCol {
     display: flex;
@@ -79,12 +81,16 @@ const Wrapper = styled.div`
       display: flex;
       gap: 0px;
       flex-direction: row-reverse;
-      width: 200px;
+      /* width: 200px; */
       /* margin-right: 260px ; */
 
     }
+    .secondCol {
+      width: 90vw !important;
+    }
     .wrapper {
-      width: 350px !important;
+      max-width: 350px;
+      width: 90vw !important;
     }
 
     .filtersSection {
@@ -95,7 +101,7 @@ const Wrapper = styled.div`
     }
     .list {
       min-height: 100vh;
-    }
+=    }
     .sidebar-btn {
       margin-top: 10px;
             margin-bottom: -10px;
@@ -136,7 +142,7 @@ const ProductsPage = () => {
 
   const updateFiltersComponent = (e) => {
     let name = e.target.name;
-    let value = e.target.value;
+    let value = e.target.value.toLowerCase();
 
     if (name === "category") {
       value = e.target.textContent;
@@ -171,15 +177,22 @@ const ProductsPage = () => {
 
   return (
     <Wrapper openFilters={openFilters}>
-    <div className="trail">
-      <button onClick={() => { setOpenFilters(!openFilters) }} className="sidebar-btn">
-        {openFilters ? <VscLayoutSidebarLeftOff /> : <VscLayoutSidebarLeft />}
-      </button>
-    </div>
-    <div className="wrapper">
-      <div className="filtersSection" >
-        {openFilters && <Filters updateFiltersComponent={updateFiltersComponent} clearFilter={clearFilter} />}
+      <div className="trail">
+        <button onClick={() => { setOpenFilters(!openFilters) }} className="sidebar-btn">
+          {openFilters ? <VscLayoutSidebarLeftOff /> : <VscLayoutSidebarLeft />}
+        </button>
       </div>
+      <div className="wrapper">
+        <div className="filtersSection" style={{
+          transform: openFilters ? "translateX(0)" : "translateX(-100%)"
+        }}>
+           <Filters
+      clearFilter={clearFilter}
+      updateFiltersComponent={updateFiltersComponent}
+      openFilters={openFilters}
+      setOpenFilters={setOpenFilters}
+    />
+        </div>
       <div className="secondCol">
         <Sort products={products} handleUpdateSort={handleUpdateSort} sort={sort} />
         <div className="list">

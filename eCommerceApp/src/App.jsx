@@ -15,6 +15,7 @@ import PersonalInformation from "./components/CABINET/PersonalInformation";
 import Wishlist from "./components/CABINET/Wishlist";
 
 const Wrapper = styled.div`
+
   /* background-color: red; */
   display: flex;
   justify-content: center;
